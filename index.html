@@ -1,13 +1,55 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lcs-site</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laurier Computing Society</title>
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+
+  <!-- Dynamic Favicon (set by JavaScript) -->
+  <link id="dynamic-favicon" rel="icon" />
+
+  <!-- Fallback PNG favicon -->
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
+
+  <!-- Apple Touch Icon for iOS -->
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Favicon Theme Switcher Script -->
+  <script>
+    function updateFavicon() {
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const faviconLink = document.getElementById('dynamic-favicon');
+
+      // Set SVG favicon for modern browsers with theme support
+      if (isDark) {
+        faviconLink.rel = 'icon';
+        faviconLink.type = 'image/svg+xml';
+        faviconLink.href = '/favicon/favicon.svg';
+      } else {
+        faviconLink.rel = 'icon';
+        faviconLink.type = 'image/svg+xml';
+        faviconLink.href = '/favicon/LCS_Icon_Black_SVG.svg';
+      }
+    }
+
+    // Update favicon on page load
+    updateFavicon();
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
