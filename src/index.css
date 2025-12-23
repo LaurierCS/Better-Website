@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+:root {
+    --font-dosis: "Dosis", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+    --color-bg: #2C3844;
+    --color-accent-pink: #FF9FC4;
+    --color-accent-orange: #FF9770;
+    --color-accent-yellow: #FFD670;
+    --color-accent-blue: #268AF9;
+    --color-accent-light-blue: #B1E0FF;
+}
