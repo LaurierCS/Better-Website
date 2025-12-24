@@ -1,7 +1,13 @@
-import HeroPage from './pages/hero';
+import Header from './components/universal/Header';
+import HeroPage from './pages/Hero';
 
 function App() {
-  return <HeroPage />;
+  return (
+    <>
+      <Header />
+      <HeroPage />
+    </>
+  );
 }
 
 export default App;
