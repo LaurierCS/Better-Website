@@ -1,8 +1,7 @@
-function App() {
+import HeroPage from './pages/hero';
 
-  return (
-    <h1>Hello World</h1>
-  )
+function App() {
+  return <HeroPage />;
 }
 
-export default App
+export default App;
