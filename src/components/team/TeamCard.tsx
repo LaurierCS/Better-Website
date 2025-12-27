@@ -49,7 +49,7 @@ export function TeamCard({ member }: TeamCardProps) {
   const accentColor = accentColorMap[colorIndex];
 
   return (
-    <div className="group relative flex items-center gap-8 py-6 px-8 transition-all duration-300 cursor-pointer hover:scale-105">
+    <div className="group relative flex items-center gap-5 py-4 px-6 transition-all duration-300 cursor-pointer hover:scale-105">
       {/* Image Container - Circular with colored border */}
       <div 
         className="relative w-32 h-32 shrink-0 rounded-full overflow-hidden border-4 group-hover:scale-110 transition-transform duration-300"
@@ -74,13 +74,13 @@ export function TeamCard({ member }: TeamCardProps) {
       {/* Info Section */}
       <div className="flex flex-col gap-1 flex-1 min-w-0">
         {/* Member Name */}
-        <h3 className="font-dosis font-bold text-white text-lg group-hover:text-[#FFD670] transition-colors duration-200 whitespace-nowrap">
+        <h3 className="font-dosis font-bold text-white text-xl group-hover:text-[#FFD670] transition-colors duration-200 whitespace-nowrap">
           {member.name}
         </h3>
         
         {/* Member Role */}
         {member.role && (
-          <p className="font-montserrat font-thin text-gray-400 text-sm whitespace-nowrap">
+          <p className="font-montserrat font-thin text-gray-400 text-base whitespace-nowrap">
             {member.role}
           </p>
         )}
