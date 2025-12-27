@@ -38,7 +38,7 @@
  *   - refetch: Function to manually refresh data
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { collection, query, getDocs, QueryConstraint } from 'firebase/firestore';
 import { firestore } from '../services/firebase';
 
@@ -57,7 +57,13 @@ export function useFirestoreCollection<T = unknown>(
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
-    const fetchData = async (): Promise<void> => {
+    // Create a stable reference for query constraints to avoid infinite loops
+    const queryKey = useMemo(
+        () => JSON.stringify(queryConstraints.map(c => c.type)),
+        [queryConstraints]
+    );
+
+    const fetchData = useCallback(async (): Promise<void> => {
         try {
             setLoading(true);
             setError(null);
@@ -79,12 +85,13 @@ export function useFirestoreCollection<T = unknown>(
         } finally {
             setLoading(false);
         }
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [collectionName, queryKey]);
 
-    // Fetch on mount and when constraints change
+    // Fetch on mount and when collection name changes
     useEffect(() => {
         fetchData();
-    }, [collectionName]);
+    }, [fetchData]);
 
     return { data, loading, error, refetch: fetchData };
 }
