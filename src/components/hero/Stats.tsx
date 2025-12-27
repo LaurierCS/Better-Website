@@ -13,7 +13,6 @@ interface StatItem {
   value: number;
   suffix: string;
   label: string;
-  color: string; // Accent color for glow effect
 }
 
 /**
@@ -24,19 +23,16 @@ const statsData: StatItem[] = [
     value: 20,
     suffix: '+',
     label: 'Events in a Year',
-    color: '#FF9770', // Orange
   },
   {
     value: 44,
     suffix: '+',
     label: 'Executive Members',
-    color: '#FFD670', // Yellow
   },
   {
     value: 4000,
     suffix: '+',
     label: 'Students',
-    color: '#FF9FC4', // Pink
   },
 ];
 
@@ -67,17 +63,13 @@ export const Stats = () => {
             className="flex flex-col items-center justify-center text-center"
           >
 
-            {/* Number Container - Animated count-up with very small glow effect */}
+            {/* Number Container - Animated count-up */}
             <div className="mb-2">
               <span
                 className="text-6xl md:text-7xl font-bold tracking-tight"
                 style={{
                   fontFamily: 'var(--font-dosis)',
                   color: '#ffffff',
-                  textShadow: startAnimation
-                    ? `0 0 8px ${stat.color}40`
-                    : 'none',
-                  transition: 'text-shadow 0.5s ease',
                 }}
               >
                 {/* CountUp Animation Component */}
