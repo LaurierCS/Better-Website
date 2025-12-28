@@ -1,5 +1,6 @@
 import Header from './components/universal/Header';
 import HeroPage from './pages/Hero';
+import Events from './pages/Events';
 import { TeamSection } from './pages/Team';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <Header />
       <HeroPage />
+      <Events />
       <TeamSection />
     </>
   );
