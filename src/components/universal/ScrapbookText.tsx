@@ -118,10 +118,12 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   }, [text]);
 
   const uppercaseText = text.toUpperCase();
-  const letters = uppercaseText.split('').filter((char) => char !== ' ');
 
   // Generate random transforms once per component instance (changes on reload)
-  const transforms = useMemo(() => generateRandomTransforms(letters.length), [letters.length]);
+  const transforms = useMemo(() => {
+    const letterCount = uppercaseText.replace(/ /g, '').length;
+    return generateRandomTransforms(letterCount);
+  }, [uppercaseText]);
 
   return (
     <div className={`flex items-center justify-center flex-wrap ${className}`}>
@@ -138,6 +140,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
         // Calculate letter index (excluding spaces)
         const letterIndex = uppercaseText.slice(0, index).replace(/ /g, '').length;
         const transform = transforms[letterIndex];
+        const totalLetters = uppercaseText.replace(/ /g, '').length;
 
         return (
           <ScrapbookLetter
@@ -146,7 +149,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
             rotation={transform.rotation}
             offsetY={transform.offsetY}
             scale={transform.scale}
-            zIndex={letters.length - letterIndex}
+            zIndex={totalLetters - letterIndex}
             size={letterSize}
             letterClassName={letterClassName}
           />
