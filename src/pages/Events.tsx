@@ -34,16 +34,17 @@ function Events() {
     function animate(ts: number) {
       if (start === null) start = ts;
       const elapsed = ts - start;
-      const duration = 7000; // 7 seconds
+      const duration = 4000; // 4 seconds
       const prog = Math.min(1, elapsed / duration);
       setProgress(prog);
       if (prog < 1) {
         frameRef.current = requestAnimationFrame(animate);
       } else {
-        // Wait 300ms at 100% before cycling
+        // Reset progress to 0 before cycling to next event to prevent bar flash
+        setProgress(0);
         setTimeout(() => {
           setActiveIdx((idx) => (idx + 1) % events.length);
-        }, 300);
+        }, 50); // Short delay to allow bar to reset visually
       }
     }
     frameRef.current = requestAnimationFrame(animate);
@@ -94,6 +95,7 @@ function Events() {
                   date={event.date}
                   progress={idx === activeIdx ? progress : 0}
                   accentColor={accentColors[idx % accentColors.length]}
+                  isActive={idx === activeIdx}
                 />
               </div>
             ))
@@ -101,7 +103,7 @@ function Events() {
         </div>
         {/* Event Image: show only one image at a time, in sync with events */}
         <div
-          className="flex flex-col items-center min-h-[400px] w-1/3 max-w-md gap-8 justify-end ml-24 pr-6"
+          className="flex flex-col items-center min-h-[400px] w-1/3 max-w-md gap-8 justify-end ml-24 pr-6 pt-8"
           style={{ height: '26rem' }}
         >
           <div
