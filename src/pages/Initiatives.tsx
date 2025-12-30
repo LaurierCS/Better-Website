@@ -1,4 +1,4 @@
-import SpeakerSignup from '../components/initiatives/SpeakerSignup';
+import SpeakerSignup from '../components/initiatives/SpeakerSignUp';
 
 export default function Initiatives() {
   return (
