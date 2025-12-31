@@ -5,6 +5,8 @@ import logoIcon from '../../assets/logos/LCS_Icon_White_SVG.svg';
 export default function Header() {
   // Track scroll state for background blur effect
   const [isScrolled, setIsScrolled] = useState(false);
+  // Track mobile menu open state
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,11 +17,16 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu when clicking a link
+  const handleNavClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white ${
-        isScrolled 
-          ? 'bg-(--color-bg)/80 backdrop-blur-md' 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white ${
+        isScrolled || isMobileMenuOpen
+          ? 'bg-[#2C3844]/95 backdrop-blur-md' 
           : 'bg-transparent'
       }`}
     >
@@ -38,12 +45,49 @@ export default function Header() {
           />
         </div>
 
-        {/* Navigation - responsive gap and text size */}
-        <nav className="flex items-center gap-3 md:gap-8">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
           <NavLink href="#about">About Us</NavLink>
           <NavLink href="#impact">Impact</NavLink>
           <NavLink href="#initiatives">Initiatives</NavLink>
           <NavLink href="#team">Our Team</NavLink>
+        </nav>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 z-50"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span 
+            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+              isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+            }`}
+          />
+          <span 
+            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+              isMobileMenuOpen ? 'opacity-0' : ''
+            }`}
+          />
+          <span 
+            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+              isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      <div 
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <nav className="flex flex-col items-center gap-4 py-4 bg-[#2C3844]/95 backdrop-blur-md border-t border-white/20">
+          <NavLink href="#about" onClick={handleNavClick}>About Us</NavLink>
+          <NavLink href="#impact" onClick={handleNavClick}>Impact</NavLink>
+          <NavLink href="#initiatives" onClick={handleNavClick}>Initiatives</NavLink>
+          <NavLink href="#team" onClick={handleNavClick}>Our Team</NavLink>
         </nav>
       </div>
     </header>
@@ -51,7 +95,7 @@ export default function Header() {
 }
 
 // Individual nav link with random accent color on hover
-function NavLink({ href, children }: { href: string; children: string }) {
+function NavLink({ href, children, onClick }: { href: string; children: string; onClick?: () => void }) {
   const [currentColor, setCurrentColor] = useState('');
   const [lastColor, setLastColor] = useState('');
 
@@ -79,9 +123,10 @@ function NavLink({ href, children }: { href: string; children: string }) {
   return (
     <a
       href={href}
+      onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative text-white text-sm md:text-lg font-medium transition-all duration-300 whitespace-nowrap"
+      className="relative text-white text-base md:text-lg font-medium transition-all duration-300 whitespace-nowrap"
       style={{ 
         fontFamily: 'var(--font-dosis)',
         color: currentColor || 'white',
