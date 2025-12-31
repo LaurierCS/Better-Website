@@ -4,11 +4,12 @@
  * Supports letters: C, E, L, M, O, S, T, W
  */
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 interface ScrapbookTextProps {
   text: string;
-  letterSize?: number; // Size in pixels, default 112 (w-28)
+  letterSize?: number; // Size in pixels for desktop, default 112 (w-28)
+  mobileLetterSize?: number; // Size in pixels for mobile, default is letterSize * 0.5
   className?: string;
   letterClassName?: string;
 }
@@ -109,9 +110,25 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps> = ({
 export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   text,
   letterSize = 112,
+  mobileLetterSize,
   className = '',
   letterClassName = '',
 }) => {
+  // Track window width for responsive sizing
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Calculate responsive letter size
+  const responsiveLetterSize = isMobile 
+    ? (mobileLetterSize ?? letterSize * 0.5) 
+    : letterSize;
+
   // Validate text on mount
   useMemo(() => {
     validateText(text);
@@ -132,7 +149,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
           return (
             <div
               key={`space-${index}`}
-              style={{ width: `${letterSize * 0.36}px` }} // Dynamic space width
+              style={{ width: `${responsiveLetterSize * 0.36}px` }} // Dynamic space width
             />
           );
         }
@@ -150,7 +167,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
             offsetY={transform.offsetY}
             scale={transform.scale}
             zIndex={totalLetters - letterIndex}
-            size={letterSize}
+            size={responsiveLetterSize}
             letterClassName={letterClassName}
           />
         );

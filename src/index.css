@@ -10,3 +10,15 @@
     --color-accent-blue: #268AF9;
     --color-accent-light-blue: #B1E0FF;
 }
+
+/* Prevent horizontal scroll on mobile */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Ensure all content respects viewport width */
+* {
+    box-sizing: border-box;
+}
