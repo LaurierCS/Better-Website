@@ -45,7 +45,7 @@ const HTMLBox = () => {
               <span className="hidden sm:inline-block w-8 border-l-2 border-slate-600/30 ml-2" />
               <span className="hidden sm:inline-block w-8 border-l-2 border-slate-600/30 ml-0" />
               <span className="sm:hidden inline-block w-4 ml-1" />
-              <span className="text-slate-200 flex-1 break-words">The Laurier Computing Society (LCS) is the official student-run society of Wilfrid Laurier University's Computer Science department. We support students through academic help, career-building events, and a strong tech-focused community.</span>
+              <span className="text-slate-200 flex-1 wrap-break-word">The Laurier Computing Society (LCS) is the official student-run society of Wilfrid Laurier University's Computer Science department. We support students through academic help, career-building events, and a strong tech-focused community.</span>
             </div>
             
             {/* Line 7: Closing p tag with indent guide */}

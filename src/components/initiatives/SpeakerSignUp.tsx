@@ -10,10 +10,10 @@ export default function SpeakerSignup() {
 
           {/* Content */}
           <div className="flex-1 flex flex-col min-w-0 w-full">
-            <h2 className="text-white font-bold text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-center md:text-left break-words" style={{ fontFamily: 'Dosis, sans-serif' }}>
+            <h2 className="text-white font-bold text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-center md:text-left wrap-break-word" style={{ fontFamily: 'Dosis, sans-serif' }}>
               WANT TO BE A SPEAKER AT OUR NEXT MTP SESSION?
             </h2>
-            <p className="text-gray-300 text-sm sm:text-base mb-4 md:mb-6 text-center md:text-left break-words" style={{ fontFamily: 'Dosis, sans-serif' }}>
+            <p className="text-gray-300 text-sm sm:text-base mb-4 md:mb-6 text-center md:text-left wrap-break-word" style={{ fontFamily: 'Dosis, sans-serif' }}>
               We'd love to hear from anyone eager to inform the youth of today about the dangers of the outside world [employement]. Click the button below and sign up to attend our next session!
             </p>
             <div className="flex justify-center">
