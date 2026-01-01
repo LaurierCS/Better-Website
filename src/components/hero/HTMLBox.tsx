@@ -23,7 +23,7 @@ const HTMLBox = () => {
 
         {/* Code Content */}
         <div className="p-3 sm:p-4 md:p-6 overflow-hidden">
-          <div className="font-montserrat font-thin text-xs sm:text-base md:text-xl leading-relaxed break-words">
+          <div className="font-montserrat font-thin text-xs sm:text-base md:text-xl leading-relaxed wrap-break-word">
             {/* Line 1: Opening div tag */}
             <div className="flex">
               <span className="text-[#6B98C4]">&lt;div&nbsp;</span>
