@@ -62,7 +62,7 @@ function Events() {
   ];
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-gradient-to-t from-slate-800 to-slate-900 px-8 py-12">
+    <div className="w-full min-h-screen flex flex-col px-8 py-12">
       <h1 className="text-white text-5xl font-bold mb-6">Upcoming Events</h1>
       <div className="flex flex-row w-full">
         {/* Event Cards List */}
