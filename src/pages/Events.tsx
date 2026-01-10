@@ -62,9 +62,9 @@ function Events() {
   ];
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center p-0 m-0">
-      <h1 className="text-white text-5xl font-bold mb-6 text-left w-full pl-6" style={{ fontFamily: 'var(--font-dosis)' }}>Upcoming Events</h1>
-      <div className="flex flex-row w-full items-center justify-center p-0 m-0 gap-12">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center" style={{padding: '20px'}}>
+      <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 w-full max-w-2xl mx-auto text-center" style={{ fontFamily: 'var(--font-dosis)' }}>Upcoming Events</h1>
+      <div className="flex flex-row w-full items-center justify-center p-0 m-0 gap-20">
         {/* Event Cards List */}
         <div className={`flex flex-col gap-8 w-full max-w-2xl items-center justify-center p-0 m-0 ${events.length === 0 ? "min-h-[300px]" : ""}`}>
           {events.length === 0 ? (
