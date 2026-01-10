@@ -8,7 +8,7 @@ type EventImageProps = {
 function EventImage({ src, alt }: EventImageProps) {
   const [imgError, setImgError] = useState(false);
   return imgError ? (
-    <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-slate-700 text-center">
+    <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-slate-700 text-center p-0 m-0">
       {alt || "Event"}
     </div>
   ) : (
