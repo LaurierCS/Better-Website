@@ -77,6 +77,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       canvasRef.current.style.height = `${height}px`;
       context.current.setTransform(1, 0, 0, 1, 0, 0);
       context.current.scale(dpr, dpr);
+      drawParticles();
     }
   };
 
