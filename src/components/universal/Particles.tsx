@@ -50,7 +50,6 @@ export const Particles: React.FC<ParticlesProps> = ({
   staticity = 50,
   ease = 35,
   size = 0.8,
-  refresh = false,
   color = "#ffffff",
   vx = 0,
   vy = 0,
@@ -100,11 +99,17 @@ export const Particles: React.FC<ParticlesProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mousePosition.x, mousePosition.y]);
 
+
+  // Redraw particles on window resize
   useEffect(() => {
-    resizeCanvas();
-    drawParticles();
+    const handleResize = () => {
+      resizeCanvas();
+      drawParticles();
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refresh]);
+  }, []);
 
   const onMouseMove = () => {
     if (canvasRef.current) {
