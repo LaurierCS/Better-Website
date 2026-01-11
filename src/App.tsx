@@ -1,5 +1,6 @@
 import Header from './components/universal/Header';
 import { PatternBackground } from './components/universal/PatternBackground';
+import ParticlesBackgroundWrapper from './components/universal/ParticlesBackground';
 import HeroPage from './pages/Hero';
 import Events from './pages/Events';
 import Initiatives from './pages/Initiatives';
@@ -7,16 +8,19 @@ import { TeamSection } from './pages/Team';
 
 function App() {
   return (
-    <div className="relative w-full bg-linear-to-b from-slate-800 to-slate-900 min-h-screen">
-      <PatternBackground />
-      <div className="relative z-10">
+    <>
+      <div className="fixed inset-0 -z-10 w-full h-full pointer-events-none">
+        <PatternBackground />
+        <ParticlesBackgroundWrapper />
+      </div>
+      <div className="relative w-full min-h-screen">
         <Header />
         <HeroPage />
         <Events />
         <Initiatives />
         <TeamSection />
       </div>
-    </div>
+    </>
   );
 }
 

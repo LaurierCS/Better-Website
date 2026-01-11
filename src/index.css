@@ -20,5 +20,14 @@ body {
 
 /* Ensure all content respects viewport width */
 * {
-    box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+/* Hide scrollbar but keep scroll enabled */
+html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
