@@ -1,4 +1,4 @@
-import patternSvg from '../../assets/patterns/Icon_Pattern.svg';
+import patternSvg from '../../../assets/patterns/Icon_Pattern.svg'
 
 export const PatternBackground = () => {
   return (
