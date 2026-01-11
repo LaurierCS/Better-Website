@@ -62,6 +62,8 @@ export const Particles: React.FC<ParticlesProps> = ({
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  // State to force rerender on resize
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
   // Set canvas size to fill the parent container automatically
   const resizeCanvas = () => {
@@ -87,12 +89,16 @@ export const Particles: React.FC<ParticlesProps> = ({
     resizeCanvas();
     drawParticles();
     animate();
-    window.addEventListener("resize", resizeCanvas);
+    // Listen for window resize to force rerender
+    const handleResize = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("resize", handleResize);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [color]);
+  }, [color, windowSize]);
 
   useEffect(() => {
     onMouseMove();
