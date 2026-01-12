@@ -5,7 +5,6 @@
 import { Welcome } from '../components/hero/Welcome';
 import { Stats } from '../components/hero/Stats';
 import HTMLBox from '../components/hero/HTMLBox';
-import Mascots from '../components/universal/Mascots';
 
 export const HeroPage = () => {
   return (
@@ -14,7 +13,6 @@ export const HeroPage = () => {
         <Welcome />
         <HTMLBox />
         <Stats />
-        <Mascots/>
       </section>
     </>
   );
