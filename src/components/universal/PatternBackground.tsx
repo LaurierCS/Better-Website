@@ -3,11 +3,10 @@ import patternSvg from '../../assets/patterns/Icon_Pattern.svg';
 export const PatternBackground = () => {
   return (
     <div
-      className="absolute inset-0 w-full min-h-screen pointer-events-none"
+      className="fixed inset-0 w-full h-full pointer-events-none"
       style={{
         background: `linear-gradient(135deg, #2C3844 0%, #4a5568 100%)`,
         zIndex: 0,
-        height: '100%'
       }}
     >
       <div
