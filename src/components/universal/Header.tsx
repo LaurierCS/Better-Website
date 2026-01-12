@@ -120,13 +120,23 @@ function NavLink({ href, children, onClick }: { href: string; children: string; 
     setCurrentColor('');
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const sectionId = href.startsWith('#') ? href.slice(1) : href;
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    onClick?.();
+  };
+
   return (
     <a
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative text-white text-base md:text-lg font-medium transition-all duration-300 whitespace-nowrap"
+      className="relative text-white text-base md:text-lg font-medium transition-all duration-300 whitespace-nowrap cursor-pointer"
       style={{ 
         fontFamily: 'var(--font-dosis)',
         color: currentColor || 'white',

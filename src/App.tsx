@@ -11,10 +11,18 @@ function App() {
       <PatternBackground />
       <div className="relative z-10">
         <Header />
-        <HeroPage />
-        <Events />
-        <Initiatives />
-        <TeamSection />
+        <div id="about">
+          <HeroPage />
+        </div>
+        <div id="impact">
+          <Events />
+        </div>
+        <div id="initiatives">
+          <Initiatives />
+        </div>
+        <div id="team">
+          <TeamSection />
+        </div>
       </div>
     </div>
   );
