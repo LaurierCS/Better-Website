@@ -1,10 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import logoFull from '../../assets/logos/LCS_Logo_Long_White_SVG.svg';
 import logoIcon from '../../assets/logos/LCS_Icon_White_SVG.svg';
 
 export default function Header() {
+  // Track scroll state for background blur effect
+  const [isScrolled, setIsScrolled] = useState(false);
   // Track mobile menu open state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Close mobile menu when clicking a link
   const handleNavClick = () => {
@@ -13,7 +24,11 @@ export default function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white bg-[#2C3844]/95 backdrop-blur-md"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white ${
+        isScrolled || isMobileMenuOpen
+          ? 'bg-[#2C3844]/95 backdrop-blur-md' 
+          : 'bg-transparent'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo - responsive sizing */}
