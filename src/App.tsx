@@ -8,7 +8,7 @@ import { TeamSection } from './pages/Team';
 
 function App() {
   return (
-    <div className="relative w-full min-h-screen" style={{ minHeight: '100vh', position: 'relative', overflow: 'auto' }}>
+    <div className="relative w-full bg-linear-to-b from-slate-800 to-slate-900 min-h-screen">
       <PatternBackground />
       <Particles />
       <div className="relative z-10">
