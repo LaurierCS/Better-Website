@@ -26,7 +26,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white ${
         isScrolled || isMobileMenuOpen
-          ? 'bg-[#2C3844]/95 backdrop-blur-md' 
+          ? 'bg-[#2C3844]/95' 
           : 'bg-transparent'
       }`}
     >
@@ -83,7 +83,7 @@ export default function Header() {
           isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <nav className="flex flex-col items-center gap-4 py-4 bg-[#2C3844]/95 backdrop-blur-md border-t border-white/20">
+        <nav className="flex flex-col items-center gap-4 py-4 bg-[#2C3844]/95 border-t border-white/20">
           <NavLink href="#about" onClick={handleNavClick}>About Us</NavLink>
           <NavLink href="#impact" onClick={handleNavClick}>Impact</NavLink>
           <NavLink href="#initiatives" onClick={handleNavClick}>Initiatives</NavLink>
