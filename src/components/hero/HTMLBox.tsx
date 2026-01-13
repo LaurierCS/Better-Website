@@ -1,6 +1,13 @@
+import Bracket from "../../assets/doodles/Bracket.svg";
+
 const HTMLBox = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto px-2 sm:px-4">
+    <div className="relative w-full max-w-3xl max-h-max mx-auto px-2 sm:px-4">
+      {/* Bracket SVG - Left */}
+      <div className="absolute left-0 top-0 bottom-0 -translate-x-26 w-27 opacity-75">
+        <img src={Bracket} alt="bracket" className="w-full h-full" />
+      </div>
+
       {/* macOS Window Container */}
       <div className="rounded-xl overflow-hidden border border-slate-700 shadow-2xl bg-[#2C3844]">
         {/* Title Bar */}
@@ -61,6 +68,11 @@ const HTMLBox = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Bracket SVG - Right */}
+      <div className="absolute right-0 top-0 bottom-0 translate-x-26 w-27 opacity-75 rotate-180">
+        <img src={Bracket} alt="bracket" className="w-full h-full" />
       </div>
     </div>
   );
