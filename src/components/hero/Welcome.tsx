@@ -16,7 +16,7 @@ export const Welcome: React.FC = () => {
     <div className="w-full flex flex-row items-center justify-center gap-10">
       <div className="flex flex-col items-center justify-center py-8 ">
         {/* Scrapbook Letter Section */}
-        <div className="max-w-4xl w-full px-4 overflow-hidden">
+        <div className="max-w-4xl w-full px-4 pr-8 overflow-hidden">
           <ScrapbookText text="WELCOME TO" letterSize={112} mobileLetterSize={48} />
         </div>
 
