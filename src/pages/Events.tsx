@@ -62,7 +62,7 @@ function Events() {
   ];
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center" style={{padding: '20px'}}>
+    <div className="w-full flex flex-col items-center justify-center px-4 py-28 sm:py-40">
       <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 w-full max-w-2xl mx-auto text-center" style={{ fontFamily: 'var(--font-dosis)' }}>Upcoming Events</h1>
       <div className="flex flex-row w-full items-center justify-center p-0 m-0 gap-20">
         {/* Event Cards List */}

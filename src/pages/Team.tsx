@@ -63,7 +63,7 @@ export function TeamSection() {
   const membersByDepartment = groupMembersByDepartment();
 
   return (
-    <section className="w-full py-12 px-4 overflow-hidden">
+    <section className="w-full px-4 py-28 sm:py-40 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Loading State */}
         {loading && (
