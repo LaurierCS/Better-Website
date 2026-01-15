@@ -144,7 +144,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   }, [uppercaseText]);
 
   return (
-    <div className={`flex items-center justify-center flex-wrap ${className}`}>
+    <div className={`flex items-center justify-center flex-wrap p-4 ${className}`}>
       {uppercaseText.split('').map((char, index) => {
         if (char === ' ') {
           return (
