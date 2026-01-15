@@ -9,7 +9,7 @@ import HTMLBox from '../components/hero/HTMLBox';
 export const HeroPage = () => {
   return (
     <>
-      <section className="w-full min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 pt-16 sm:pt-20">
+      <section className="w-full flex flex-col items-center justify-center overflow-hidden px-4 py-28 sm:py-40">
         <Welcome />
         <HTMLBox />
         <Stats />
