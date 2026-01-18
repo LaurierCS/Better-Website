@@ -21,16 +21,22 @@ export const EventCarousel = ({ events }: EventCarouselProps) => {
   
   const speedMultiplierRef = useRef(1);
   const animationFrameRef = useRef<number | null>(null);
-  const lastTimeRef = useRef(Date.now());
+  const lastTimeRef = useRef(0);
   const dragStartXRef = useRef(0);
   const dragStartTranslateRef = useRef(0);
   const dragVelocityRef = useRef(0);
   const lastMouseXRef = useRef(0);
-  const lastTimeVelocityRef = useRef(Date.now());
+  const lastTimeVelocityRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Duplicate events array to create seamless infinite loop
   const duplicatedEvents = [...events, ...events];
+
+  // Initialize timing refs in useEffect to avoid impure function calls during render
+  useEffect(() => {
+    lastTimeRef.current = Date.now();
+    lastTimeVelocityRef.current = Date.now();
+  }, []);
 
   // Update ref when speedMultiplier changes
   useEffect(() => {
