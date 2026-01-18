@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 /**
  * ImageGallery Component
@@ -39,12 +39,14 @@ export default function ImageGallery({
   showDots = true,
 }: ImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Ensure we have valid data
-  if (!images || images.length === 0) {
-    return <div className="text-white/60 text-center py-8">No images to display</div>;
-  }
+  // Navigate to a specific image
+  const navigateTo = useCallback((index: number) => {
+    setCurrentIndex((current) => {
+      if (index === current) return current;
+      return index;
+    });
+  }, []);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -58,7 +60,7 @@ export default function ImageGallery({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, images.length]);
+  }, [currentIndex, images.length, navigateTo]);
 
   // Auto-scroll functionality
   useEffect(() => {
@@ -71,16 +73,10 @@ export default function ImageGallery({
     return () => clearInterval(interval);
   }, [autoScrollInterval, images.length]);
 
-  // Navigate to a specific image
-  const navigateTo = (index: number) => {
-    if (index === currentIndex || isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setCurrentIndex(index);
-    
-    // Reset transition lock after animation completes
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
+  // Ensure we have valid data
+  if (!images || images.length === 0) {
+    return <div className="text-white/60 text-center py-8">No images to display</div>;
+  }
 
   // Get lightened accent color for caption background
   const captionBgColor = accentColors[currentIndex % accentColors.length] + '99';

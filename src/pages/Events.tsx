@@ -29,7 +29,6 @@ function Events() {
 
   useEffect(() => {
     let start: number | null = null;
-    setProgress(0);
     if (frameRef.current) cancelAnimationFrame(frameRef.current);
     function animate(ts: number) {
       if (start === null) start = ts;
@@ -41,7 +40,6 @@ function Events() {
         frameRef.current = requestAnimationFrame(animate);
       } else {
         // Reset progress to 0 before cycling to next event to prevent bar flash
-        setProgress(0);
         setTimeout(() => {
           setActiveIdx((idx) => (idx + 1) % events.length);
         }, 50); // Short delay to allow bar to reset visually
@@ -51,7 +49,6 @@ function Events() {
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIdx, events.length]);
 
   // Accent colors for the 3 events
@@ -66,7 +63,7 @@ function Events() {
       <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 w-full max-w-2xl mx-auto text-center" style={{ fontFamily: 'var(--font-dosis)' }}>Upcoming Events</h1>
       <div className="flex flex-row w-full items-center justify-center p-0 m-0 gap-20">
         {/* Event Cards List */}
-        <div className={`flex flex-col gap-8 w-full max-w-2xl items-center justify-center p-0 m-0 ${events.length === 0 ? "min-h-[300px]" : ""}`}>
+        <div className={`flex flex-col gap-8 w-full max-w-2xl items-center justify-center p-0 m-0 ${events.length === 0 ? "min-h-75" : ""}`}>
           {events.length === 0 ? (
             <div className="w-full flex justify-center">
               <div className="w-full max-w-3xl">
@@ -103,7 +100,7 @@ function Events() {
         </div>
         {/* Event Image: show only one image at a time, in sync with events */}
         <div
-          className="flex flex-col items-center min-h-[400px] w-1/3 max-w-md gap-8 justify-center p-0 m-0"
+          className="flex flex-col items-center min-h-100 w-1/3 max-w-md gap-8 justify-center p-0 m-0"
           style={{ height: '26rem' }}
         >
           <div
