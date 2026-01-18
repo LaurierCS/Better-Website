@@ -1,15 +1,17 @@
+import { Mascots } from '../universal/Mascots';
+
 export default function SpeakerSignup() {
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-8">
-      <div className="relative bg-gray-950 rounded-3xl border border-yellow-400 p-4 sm:p-6 md:p-8 overflow-hidden" style={{ borderColor: 'var(--color-accent-yellow)' }}>
+    <div className="w-full max-w-6xl mx-auto px-4 py-8">
+      <div className="relative bg-gray-950 rounded-3xl border border-yellow-400 p-4 sm:p-6 md:p-8" style={{ borderColor: 'var(--color-accent-yellow)' }}>
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-          {/* Placeholder for graphic */}
-          <div className="shrink-0 w-32 h-28 sm:w-40 sm:h-32 md:w-48 md:h-40 bg-slate-700/50 rounded-lg flex items-center justify-center">
-            <p className="text-gray-400 text-xs sm:text-sm">Graphic Placeholder</p>
+          {/* Doug Mascot positioned to pop out of top and clip at bottom - trying */}
+          <div className="absolute bottom-3 -left-6 sm:-left-2 md:left-2 translate-y-8 pointer-events-none">
+            <Mascots mascotSize={300} mobileMascotSize={240} mascotNames={['Doug']} className="" showOverlap={true} />
           </div>
 
           {/* Content */}
-          <div className="flex-1 flex flex-col min-w-0 w-full">
+          <div className="flex-1 flex flex-col min-w-0 w-full md:ml-64 lg:ml-80">
             <h2 className="text-white font-bold text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-center md:text-left wrap-break-word" style={{ fontFamily: 'Dosis, sans-serif' }}>
               WANT TO BE A SPEAKER AT OUR NEXT MTP SESSION?
             </h2>
