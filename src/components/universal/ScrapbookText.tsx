@@ -5,6 +5,7 @@
  */
 
 import React, { useMemo } from 'react';
+import '../styles/scrapbookAnimations.css';
 
 interface ScrapbookTextProps {
   text: string;
@@ -73,7 +74,7 @@ interface ScrapbookLetterProps {
   letterClassName?: string;
 }
 
-const ScrapbookLetter: React.FC<ScrapbookLetterProps> = ({
+const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> = ({
   letter,
   rotation,
   offsetY,
@@ -81,8 +82,10 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps> = ({
   zIndex,
   size,
   letterClassName,
+  letterIndex,
 }) => {
   const assetPath = letterAssets[letter];
+  const staggerDelay = letterIndex * 60; // 60ms stagger between letters
 
   return (
     <div
@@ -92,6 +95,7 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps> = ({
         transition: 'transform 0.2s ease-out',
         marginRight: `${-size * 0.45}px`, // Dynamic overlap based on size
         zIndex,
+        animation: `scrapbookLetterAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both`,
       }}
     >
       <img
@@ -166,8 +170,9 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
             letter={char as SupportedLetter}
             rotation={transform.rotation}
             offsetY={transform.offsetY}
-            scale={transform.scale}
+            letterIndex={letterIndex}
             zIndex={totalLetters - letterIndex}
+            scale={transform.scale}
             size={responsiveLetterSize}
             letterClassName={letterClassName}
           />
