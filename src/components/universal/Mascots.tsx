@@ -5,6 +5,7 @@
  */
 
 import React, { useMemo } from 'react';
+import '../styles/scrapbookAnimations.css';
 
 interface MascotsProps {
   mascotSize?: number; // Size in pixels for desktop, default 200
@@ -44,6 +45,7 @@ interface MascotItemProps {
   zIndex: number;
   size: number;
   overlapAmount: number;
+  mascotIndex: number;
 }
 
 const MascotItem: React.FC<MascotItemProps> = ({
@@ -55,7 +57,10 @@ const MascotItem: React.FC<MascotItemProps> = ({
   zIndex,
   size,
   overlapAmount,
+  mascotIndex,
 }) => {
+  const staggerDelay = mascotIndex * 120; // 120ms stagger between mascots
+
   return (
     <div
       className="relative shrink-0"
@@ -64,6 +69,7 @@ const MascotItem: React.FC<MascotItemProps> = ({
         transition: 'transform 0.2s ease-out',
         marginRight: `-${overlapAmount}px`,
         zIndex,
+        animation: `mascotAppear 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both`,
       }}
     >
       <img
@@ -123,6 +129,7 @@ export const Mascots: React.FC<MascotsProps> = ({
           name={mascot.name}
           path={mascot.path}
           rotation={transforms[index].rotation}
+          mascotIndex={index}
           offsetY={transforms[index].offsetY}
           scale={transforms[index].scale}
           zIndex={index + 1}
