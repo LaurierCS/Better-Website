@@ -1,0 +1,20 @@
+/* Fade and slide up animation */
+
+@keyframes fadeSlideUpFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeSlideUpFromBottom {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUpFromBottom 0.8s ease-out forwards;
+    animation-delay: 0.3s;
+}

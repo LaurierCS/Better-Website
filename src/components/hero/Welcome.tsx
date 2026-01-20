@@ -6,6 +6,7 @@
 
 import ScrapbookText from '../universal/ScrapbookText';
 import Mascots from '../universal/Mascots';
+import '../styles/fadeSlideUpAnimation.css';
 
 /**
  * Welcome Component
@@ -22,7 +23,7 @@ export const Welcome: React.FC = () => {
 
         {/* Laurier Computing Society Text */}
         <h1
-          className="font-bold text-white text-center pl-5"
+          className="font-bold text-white text-center pl-5 fadeSlideUpFromBottom"
           style={{ fontFamily: 'var(--font-dosis)', fontSize: '3.2rem', lineHeight: '1.2' }}
         >
           LAURIER COMPUTING SOCIETY
