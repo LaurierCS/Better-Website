@@ -1,8 +1,9 @@
 import Bracket from "../../assets/doodles/Bracket.svg";
+import "../styles/fadeSlideUpAnimation.css";
 
 const HTMLBox = () => {
   return (
-    <div className="relative w-full max-w-3xl max-h-max mx-auto px-2 sm:px-4">
+    <div className="fadeSlideUpFromBottom relative w-full max-w-3xl max-h-max mx-auto px-2 sm:px-4">
       {/* Bracket SVG - Left */}
       <div className="absolute left-0 top-0 bottom-0 -translate-x-26 w-27 opacity-75">
         <img src={Bracket} alt="bracket" className="w-full h-full" />
