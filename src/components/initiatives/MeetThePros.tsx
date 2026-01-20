@@ -19,7 +19,7 @@ export default function MeetThePros() {
             <div className="w-full lg:flex-1 lg:max-w-2xl">
                 <ScrapbookText text="MEET THE" letterSize={112} mobileLetterSize={48} className="justify-start -ml-5" />
 
-                <h2 className="font-black text-white text-left leading-tight mt-1" style={{ fontFamily: 'Dosis, sans-serif', fontSize: '4.7rem' }}>
+                <h2 className="font-black text-white text-left leading-tight mt-1 fadeSlideUpFromBottom" style={{ fontFamily: 'Dosis, sans-serif', fontSize: '4.7rem' }}>
                     PROFESSIONALS
                 </h2>
 
