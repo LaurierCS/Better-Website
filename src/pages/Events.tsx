@@ -63,9 +63,9 @@ function Events() {
   ];
 
   return (
-    <div className="w-full flex flex-col px-4 py-28 sm:py-40">
+    <div className="w-full flex flex-col px-4 py-8 sm:py-20 md:py-28 lg:py-40">
       <h1
-        className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-16 w-full max-w-6xl mx-auto text-left"
+        className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-16 w-full max-w-6xl mx-auto text-left"
         style={{ fontFamily: 'var(--font-dosis)' }}
       >
         Upcoming Events
