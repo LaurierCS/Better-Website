@@ -1,6 +1,8 @@
 import patternSvg from '../../assets/patterns/Icon_Pattern.svg';
 
 export const PatternBackground = () => {
+  const isMobile = window.innerWidth < 768;
+
   return (
     <div
       className="fixed inset-0 w-full h-full pointer-events-none"
@@ -15,10 +17,11 @@ export const PatternBackground = () => {
           inset: '-50%',
           backgroundImage: `url(${patternSvg})`,
           backgroundRepeat: 'repeat',
-          backgroundSize: '800px',
+          backgroundSize: isMobile ? '600px' : '800px',
           opacity: 0.02,
           transform: 'rotate(-15deg)',
           transformOrigin: 'center',
+          willChange: 'auto',
         }}
       />
     </div>

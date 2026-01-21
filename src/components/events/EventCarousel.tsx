@@ -18,6 +18,7 @@ export const EventCarousel = ({ events }: EventCarouselProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
   const [translateX, setTranslateX] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
   const speedMultiplierRef = useRef(1);
   const animationFrameRef = useRef<number | null>(null);
@@ -38,17 +39,27 @@ export const EventCarousel = ({ events }: EventCarouselProps) => {
     lastTimeVelocityRef.current = Date.now();
   }, []);
 
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Update ref when speedMultiplier changes
   useEffect(() => {
     speedMultiplierRef.current = speedMultiplier;
   }, [speedMultiplier]);
 
-  // Handle deceleration on hover and acceleration on unhover
+  // Handle deceleration on hover and acceleration on unhover (desktop only)
   useEffect(() => {
     const interval = setInterval(() => {
       setSpeedMultiplier((prev) => {
-        if (isHovered || isDragging) {
+        if ((isHovered || isDragging) && !isMobile) {
           return Math.max(0, prev - 0.2);
+        } else if (isMobile) {
+          return 1; // Keep full speed on mobile
         } else {
           return Math.min(1, prev + 0.2);
         }
@@ -56,10 +67,13 @@ export const EventCarousel = ({ events }: EventCarouselProps) => {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [isHovered, isDragging]);
+  }, [isHovered, isDragging, isMobile]);
 
-  // Handle mouse down - start drag
+  // Handle mouse down - start drag (disabled on mobile)
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Disable dragging on mobile
+    if (isMobile) return;
+    
     // Only allow dragging when carousel is stopped (speedMultiplier is 0)
     if (speedMultiplierRef.current > 0.05) return;
     
@@ -161,7 +175,7 @@ export const EventCarousel = ({ events }: EventCarouselProps) => {
   return (
     <div 
       ref={containerRef}
-      className="w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
+      className="w-full overflow-hidden md:cursor-grab md:active:cursor-grabbing select-none"
       style={{
         maskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)',
         WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)',
@@ -174,9 +188,9 @@ export const EventCarousel = ({ events }: EventCarouselProps) => {
           width: 'fit-content',
           userSelect: 'none',
         }}
-        onMouseEnter={() => !isDragging && setIsHovered(true)}
-        onMouseLeave={() => !isDragging && setIsHovered(false)}
-        onMouseDown={handleMouseDown}
+        onMouseEnter={() => !isDragging && !isMobile && setIsHovered(true)}
+        onMouseLeave={() => !isDragging && !isMobile && setIsHovered(false)}
+        onMouseDown={!isMobile ? handleMouseDown : undefined}
       >
         {duplicatedEvents.map((event, index) => (
           <div key={`${event.id}-${index}`}>
