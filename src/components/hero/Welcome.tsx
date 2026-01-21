@@ -23,14 +23,16 @@ export const Welcome: React.FC = () => {
 
         {/* Laurier Computing Society Text */}
         <h1
-          className="font-bold text-white text-center pl-5 fadeSlideUpFromBottom"
-          style={{ fontFamily: 'var(--font-dosis)', fontSize: '3.2rem', lineHeight: '1.2' }}
+          className="font-bold text-white text-center md:pl-5 fadeSlideUpFromBottom text-2xl sm:text-3xl md:text-5xl"
+          style={{ fontFamily: 'var(--font-dosis)', lineHeight: '1.2' }}
         >
           LAURIER COMPUTING SOCIETY
         </h1>
       </div>
       {/* Mascots Section */}
-      <Mascots mascotSize={180}/>
+      <div className="hidden md:flex">
+        <Mascots mascotSize={180}/>
+      </div>
     </div>
   );
 };

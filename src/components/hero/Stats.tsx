@@ -54,19 +54,19 @@ export const Stats = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-16">
-      {/* Stats Grid - 1 column mobile, 3 columns desktop */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+    <div className="w-full max-w-6xl mx-auto px-4 py-4 md:py-16">
+      {/* Stats Grid - flex row mobile, 3 columns desktop */}
+      <div className="flex flex-row md:grid md:grid-cols-3 gap-4 md:gap-12 lg:gap-16 items-center justify-center md:items-start">
         {statsData.map((stat, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center text-center"
+            className="flex flex-col items-center justify-center text-center flex-1"
           >
 
             {/* Number Container - Animated count-up */}
-            <div className="mb-2">
+            <div className="mb-1 md:mb-2">
               <span
-                className="text-6xl md:text-7xl font-bold tracking-tight"
+                className="text-2xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                 style={{
                   fontFamily: 'var(--font-dosis)',
                   color: '#ffffff',
@@ -97,7 +97,7 @@ export const Stats = () => {
 
             {/* Label Text - Regular weight Dosis font */}
             <p
-              className="text-xl md:text-2xl text-gray-300 tracking-wide"
+              className="text-xs md:text-xl lg:text-2xl text-gray-300 tracking-wide"
               style={{
                 fontFamily: 'var(--font-dosis)',
               }}
