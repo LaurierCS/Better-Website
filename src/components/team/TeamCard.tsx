@@ -85,10 +85,10 @@ export function TeamCard({ member }: TeamCardProps) {
           </p>
         )}
 
-        {/* Social Links Container */}
-        <div className="flex gap-2 mt-1">
+        {/* Social Links Container - HIDDEN FOR NOW (no database logic yet) */}
+        {/* <div className="flex gap-2 mt-1">
           {/* GitHub Link */}
-          <a
+          {/* <a
             href={member.links?.github || '#'}
             className={`p-1 rounded transition-all duration-200 ${
               member.links?.github
@@ -104,7 +104,7 @@ export function TeamCard({ member }: TeamCardProps) {
           </a>
 
           {/* LinkedIn Link */}
-          <a
+          {/* <a
             href={member.links?.linkedin || '#'}
             className={`p-1 rounded transition-all duration-200 ${
               member.links?.linkedin
@@ -118,7 +118,7 @@ export function TeamCard({ member }: TeamCardProps) {
           >
             <LinkedInIcon />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
