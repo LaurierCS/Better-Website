@@ -20,6 +20,9 @@ interface TeamCardProps {
 }
 
 // SVG Icons to avoid deprecated lucide imports
+const showGithub = false;
+const showLinkedin = false;
+
 const GitHubIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c2.6-.4 5.6-1.3 5.6-6a4.7 4.7 0 0 0-1.3-3.3 4.4 4.4 0 0 0-.1-3.3s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.4 4.4 0 0 0-.1 3.3A4.7 4.7 0 0 0 4 9.5c0 4.6 3 5.6 5.6 6a4.8 4.8 0 0 0-1 3.5v4" />
@@ -85,40 +88,46 @@ export function TeamCard({ member }: TeamCardProps) {
           </p>
         )}
 
-        {/* Social Links Container - HIDDEN FOR NOW (no database logic yet) */}
-        {/* <div className="flex gap-2 mt-1">
-          {/* GitHub Link */}
-          {/* <a
-            href={member.links?.github || '#'}
-            className={`p-1 rounded transition-all duration-200 ${
-              member.links?.github
-                ? 'text-white hover:text-[#FF9FC4]'
-                : 'text-gray-600 opacity-40 cursor-not-allowed'
-            }`}
-            title={member.links?.github ? 'GitHub' : 'GitHub - Not Added'}
-            onClick={(e) => {
-              if (!member.links?.github) e.preventDefault();
-            }}
-          >
-            <GitHubIcon />
-          </a>
+        {/* Social Links Container */}
+        {(showGithub || showLinkedin) && (
+          <div className="flex gap-2 mt-1">
+            {/* GitHub Link */}
+            {showGithub && (
+              <a
+                href={member.links?.github || '#'}
+                className={`p-1 rounded transition-all duration-200 ${
+                  member.links?.github
+                    ? 'text-white hover:text-[#FF9FC4]'
+                    : 'text-gray-600 opacity-40 cursor-not-allowed'
+                }`}
+                title={member.links?.github ? 'GitHub' : 'GitHub - Not Added'}
+                onClick={(e) => {
+                  if (!member.links?.github) e.preventDefault();
+                }}
+              >
+                <GitHubIcon />
+              </a>
+            )}
 
-          {/* LinkedIn Link */}
-          {/* <a
-            href={member.links?.linkedin || '#'}
-            className={`p-1 rounded transition-all duration-200 ${
-              member.links?.linkedin
-                ? 'text-white hover:text-[#268AF9]'
-                : 'text-gray-600 opacity-40 cursor-not-allowed'
-            }`}
-            title={member.links?.linkedin ? 'LinkedIn' : 'LinkedIn - Not Added'}
-            onClick={(e) => {
-              if (!member.links?.linkedin) e.preventDefault();
-            }}
-          >
-            <LinkedInIcon />
-          </a>
-        </div> */}
+            {/* LinkedIn Link */}
+            {showLinkedin && (
+              <a
+                href={member.links?.linkedin || '#'}
+                className={`p-1 rounded transition-all duration-200 ${
+                  member.links?.linkedin
+                    ? 'text-white hover:text-[#268AF9]'
+                    : 'text-gray-600 opacity-40 cursor-not-allowed'
+                }`}
+                title={member.links?.linkedin ? 'LinkedIn' : 'LinkedIn - Not Added'}
+                onClick={(e) => {
+                  if (!member.links?.linkedin) e.preventDefault();
+                }}
+              >
+                <LinkedInIcon />
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
