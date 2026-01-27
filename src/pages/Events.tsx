@@ -1,82 +1,52 @@
-import { EventCarousel } from '../components/events/EventCarousel';
+/**
+ * Events Page
+ * Displays upcoming events with interactive gallery and synchronized details
+ */
 
-interface CarouselEvent {
-  id: string;
-  image: string;
-  title: string;
-  date: string;
-  description: string;
-}
+import { useState } from 'react';
+import EventDetails from '../components/events/EventDetails';
+import EventGallery from '../components/events/EventGallery';
+import { eventsData } from '../data/eventsData';
+import '../components/styles/fadeSlideUpAnimation.css';
 
-function Events() {
-  // Mock carousel data - all using same image
-  const mockImage = 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop';
-  const events: CarouselEvent[] = [
-    {
-      id: '1',
-      image: mockImage,
-      title: 'Winter Gala',
-      date: 'Jan 15, 2026',
-      description:
-        'Join us for an evening of music, food, and celebration as we ring in the new year with style and excitement. Formal attire required.',
-    },
-    {
-      id: '2',
-      image: mockImage,
-      title: 'Tech Expo',
-      date: 'Feb 10, 2026',
-      description:
-        'Explore the latest innovations in technology, meet industry leaders, and participate in hands-on workshops. Open to all ages.',
-    },
-    {
-      id: '3',
-      image: mockImage,
-      title: 'Spring Festival',
-      date: 'Mar 21, 2026',
-      description:
-        'Celebrate the arrival of spring with live performances, food trucks, games, and a vibrant community market.',
-    },
-    {
-      id: '4',
-      image: mockImage,
-      title: 'Summer Concert Series',
-      date: 'Jun 15, 2026',
-      description:
-        'Experience live music under the stars featuring local and regional artists. Bring your friends and family for a night to remember.',
-    },
-    {
-      id: '5',
-      image: mockImage,
-      title: 'Fall Harvest Market',
-      date: 'Oct 3, 2026',
-      description:
-        'Support local farmers and artisans at our annual harvest market. Fresh produce, handmade crafts, and live entertainment throughout the day.',
-    },
-    {
-      id: '6',
-      image: mockImage,
-      title: 'Holiday Lighting Ceremony',
-      date: 'Dec 1, 2026',
-      description:
-        'Kick off the holiday season with our spectacular lighting ceremony. Featuring holiday performances, festive food, and family activities.',
-    },
-  ];
+export default function Events() {
+  const [currentEventIndex, setCurrentEventIndex] = useState(0);
+  const currentEvent = eventsData[currentEventIndex];
 
   return (
-    <div className="w-full flex flex-col px-4 py-8 sm:py-20 md:py-28 lg:py-40">
-      <h1
-        className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-16 w-full max-w-6xl mx-auto text-left"
-        style={{ fontFamily: 'var(--font-dosis)' }}
-      >
-        Upcoming Events
-      </h1>
+    <section
+      id="events"
+      className="w-full flex flex-col items-center justify-center overflow-hidden px-4 py-16 sm:py-24"
+    >
+      <div className="w-full max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="mb-4 sm:mb-6 fadeSlideUpFromBottom">
+          <h2
+            className="font-black text-white text-left leading-tight text-4xl md:text-6xl lg:text-7xl"
+            style={{ fontFamily: 'Dosis, sans-serif' }}
+          >
+            UPCOMING EVENTS
+          </h2>
+        </div>
 
-      {/* Carousel Container */}
-      <div className="w-full max-w-6xl mx-auto">
-        <EventCarousel events={events} />
+        {/* Main Content: Two-column layout */}
+        <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-10 items-center">
+          {/* Left: Event Details */}
+          <div className="w-full lg:w-[42%] lg:pr-4">
+            <EventDetails event={currentEvent} eventIndex={currentEventIndex} />
+          </div>
+
+          {/* Right: Event Gallery */}
+          <div className="w-full lg:w-[60%]">
+            <EventGallery
+              events={eventsData}
+              currentIndex={currentEventIndex}
+              onIndexChange={setCurrentEventIndex}
+              autoScrollInterval={6000}
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
-
-export default Events;
