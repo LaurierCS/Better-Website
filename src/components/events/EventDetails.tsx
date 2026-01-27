@@ -4,7 +4,7 @@
  * Animates when switching between events
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import type { EventData } from '../../data/eventsData';
 import '../styles/eventTransitions.css';
 
@@ -17,21 +17,37 @@ interface EventDetailsProps {
 }
 
 export default function EventDetails({ event, eventIndex }: EventDetailsProps) {
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayEvent, setDisplayEvent] = useState(event);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const transitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const accentColor = accentColors[eventIndex % accentColors.length];
 
   // Handle smooth transition when event changes
   useEffect(() => {
     if (event.id !== displayEvent.id) {
-      setIsTransitioning(true);
-      const timer = setTimeout(() => {
-        setDisplayEvent(event);
-        setIsTransitioning(false);
-      }, 300);
-      return () => clearTimeout(timer);
+      // Clear any pending transition
+      if (transitionTimerRef.current) {
+        clearTimeout(transitionTimerRef.current);
+      }
+
+      // Start fade out
+      transitionTimerRef.current = setTimeout(() => {
+        setIsTransitioning(true);
+        
+        // Update content after fade out
+        transitionTimerRef.current = setTimeout(() => {
+          setDisplayEvent(event);
+          setIsTransitioning(false);
+        }, 300);
+      }, 0);
     }
-  }, [event, displayEvent.id]);
+
+    return () => {
+      if (transitionTimerRef.current) {
+        clearTimeout(transitionTimerRef.current);
+      }
+    };
+  }, [event.id, displayEvent.id, event]);
 
   return (
     <div
