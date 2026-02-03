@@ -16,9 +16,9 @@ export default function Events() {
   return (
     <section
       id="events"
-      className="w-full flex flex-col items-center justify-center overflow-hidden px-4 py-16 sm:py-24"
+      className="w-full flex flex-col items-center justify-center overflow-hidden px-4 py-16 sm:py-28"
     >
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-4 sm:mb-6 fadeSlideUpFromBottom">
           <h2
@@ -32,12 +32,12 @@ export default function Events() {
         {/* Main Content: Two-column layout */}
         <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-10 items-center">
           {/* Left: Event Details */}
-          <div className="w-full lg:w-[42%] lg:pr-4">
+          <div className="w-full lg:w-[48%] lg:pr-4">
             <EventDetails event={currentEvent} eventIndex={currentEventIndex} />
           </div>
 
           {/* Right: Event Gallery */}
-          <div className="w-full lg:w-[60%]">
+          <div className="w-full lg:w-[52%]">
             <EventGallery
               events={eventsData}
               currentIndex={currentEventIndex}
