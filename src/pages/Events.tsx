@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import EventDetails from '../components/events/EventDetails';
 import EventGallery from '../components/events/EventGallery';
+import ScrapbookText from '../components/universal/ScrapbookText';
 import { eventsData } from '../data/eventsData';
 import '../components/styles/fadeSlideUpAnimation.css';
 
@@ -21,12 +22,12 @@ export default function Events() {
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-4 sm:mb-6 fadeSlideUpFromBottom">
-          <h2
-            className="font-black text-white text-left leading-tight text-4xl md:text-6xl lg:text-7xl"
-            style={{ fontFamily: 'Dosis, sans-serif' }}
-          >
-            UPCOMING EVENTS
-          </h2>
+          <ScrapbookText
+            text="UPCOMING EVENTS"
+            letterSize={112}
+            mobileLetterSize={56}
+            className="text-left"
+          />
         </div>
 
         {/* Main Content: Two-column layout */}

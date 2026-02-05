@@ -1,7 +1,7 @@
 /**
  * ScrapbookText Component
  * Universal component for displaying text in scrapbook style using letter assets
- * Supports letters: A, C, D, E, F, G, H, I, K, L, M, N, O, R, S, T, U, V, W
+ * Supports letters: A, C, D, E, F, G, H, I, K, L, M, N, O, P, R, S, T, U, V, W
  */
 
 import React, { useMemo } from 'react';
@@ -16,7 +16,7 @@ interface ScrapbookTextProps {
 }
 
 // Supported letters - only these have assets
-const SUPPORTED_LETTERS = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'R', 'S', 'T', 'U', 'V', 'W'] as const;
+const SUPPORTED_LETTERS = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'W'] as const;
 type SupportedLetter = typeof SUPPORTED_LETTERS[number];
 
 // Map each letter to its asset path
@@ -34,6 +34,7 @@ const letterAssets: Record<SupportedLetter, string> = {
   M: '/src/assets/letters/M.webp',
   N: '/src/assets/letters/N.webp',
   O: '/src/assets/letters/O.webp',
+  P: '/src/assets/letters/P.webp',
   R: '/src/assets/letters/R.webp',
   S: '/src/assets/letters/S.webp',
   T: '/src/assets/letters/T.webp',
