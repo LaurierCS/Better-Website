@@ -1,5 +1,6 @@
 import { useFirestoreCollection } from '../hooks/useFirestoreCollection';
 import { TeamCard } from '../components/team/TeamCard';
+import { ScrapbookText } from '../components/universal/ScrapbookText';
 import { where } from 'firebase/firestore';
 import { DEPARTMENTS, getDepartmentFromRole, getRoleHierarchy, type Department } from '../utils/departmentMap';
 
@@ -65,6 +66,16 @@ export function TeamSection() {
   return (
     <section className="w-full px-4 py-28 sm:py-40 overflow-hidden">
       <div className="max-w-6xl mx-auto">
+        {/* Main Team Header */}
+        <div className="mb-16 sm:mb-20 text-center">
+          <ScrapbookText
+            text="Meet the Team"
+            letterSize={110}
+            mobileLetterSize={55}
+            className="justify-center"
+          />
+        </div>
+
         {/* Loading State */}
         {loading && (
           <div className="flex justify-center items-center min-h-96">
@@ -92,12 +103,15 @@ export function TeamSection() {
               if (deptMembers.length === 0) return null;
 
               return (
-                <div key={dept} className="space-y-6">
-                  {/* Department Header */}
-                  <div className="border-b-2 border-[#FFD670] pb-3">
-                    <h2 className="font-dosis font-bold text-2xl md:text-3xl text-[#FFD670]">
-                      {dept}
-                    </h2>
+                <div key={dept} className="space-y-5">
+                  {/* Department Header with ScrapbookText - Left Aligned */}
+                  <div className="flex justify-start">
+                    <ScrapbookText
+                      text={dept}
+                      letterSize={68}
+                      mobileLetterSize={36}
+                      className="justify-start"
+                    />
                   </div>
 
                   {/* Department Members Grid */}
