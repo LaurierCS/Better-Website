@@ -21,7 +21,7 @@ export default function Events() {
     >
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="mb-4 sm:mb-6 fadeSlideUpFromBottom">
+        <div className="6 fadeSlideUpFromBottom">
           <ScrapbookText
             text="UPCOMING EVENTS"
             letterSize={112}
@@ -38,7 +38,7 @@ export default function Events() {
           </div>
 
           {/* Right: Event Gallery */}
-          <div className="w-full lg:w-[52%]">
+          <div className="w-full lg:w-[52%] py-[6vh] md:py-[8vh] lg:py-[10vh]">
             <EventGallery
               events={eventsData}
               currentIndex={currentEventIndex}
