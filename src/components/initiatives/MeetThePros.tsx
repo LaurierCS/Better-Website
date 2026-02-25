@@ -1,7 +1,7 @@
 import ScrapbookText from "../universal/ScrapbookText";
 import ImageGallery from "../universal/ImageGallery";
 import meetTheProsF25 from "../../assets/events/Meet_the_pros_F25.jpg";
-import meetTheProsW25 from "../../assets/events/Meet_the_pros_W25.jpg";
+import meetTheProsW25 from "../../assets/events/Meet_The_pros_W25.JPG";
 
 export default function MeetThePros() {
     // Image gallery data for Meet the Pros events
