@@ -11,16 +11,16 @@ function App() {
       <PatternBackground />
       <div className="relative z-10">
         <Header />
-        <div id="about" style={{ scrollMarginTop: '3.5rem' }}>
+        <div id="about">
           <HeroPage />
         </div>
-        <div id="impact" style={{ scrollMarginTop: '3.5rem' }}>
+        <div id="impact">
           <Events />
         </div>
-        <div id="initiatives" style={{ scrollMarginTop: '3.5rem' }}>
+        <div id="initiatives" style={{ scrollMarginTop: '-100px' }}>
           <Initiatives />
         </div>
-        <div id="team" style={{ scrollMarginTop: '3.5rem' }}>
+        <div id="team" style={{ scrollMarginTop: '-100px' }}>
           <TeamSection />
         </div>
       </div>

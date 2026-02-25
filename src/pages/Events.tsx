@@ -17,11 +17,11 @@ export default function Events() {
   return (
     <section
       id="events"
-      className="w-full flex flex-col items-center justify-center overflow-hidden px-4 py-16 sm:py-28"
+      className="w-full flex flex-col items-center justify-center overflow-hidden px-4 pt-48"
     >
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="6 fadeSlideUpFromBottom">
+        <div className="mb-8 fadeSlideUpFromBottom">
           <ScrapbookText
             text="UPCOMING EVENTS"
             letterSize={112}
@@ -31,14 +31,14 @@ export default function Events() {
         </div>
 
         {/* Main Content: Two-column layout */}
-        <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-10 items-center">
+        <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-10 items-start">
           {/* Left: Event Details */}
-          <div className="w-full lg:w-[48%] lg:pr-4">
+          <div className="w-full lg:w-[48%] lg:pr-4 min-h-[600px] lg:min-h-[500px] flex flex-col">
             <EventDetails event={currentEvent} eventIndex={currentEventIndex} />
           </div>
 
           {/* Right: Event Gallery */}
-          <div className="w-full lg:w-[52%] py-[6vh] md:py-[8vh] lg:py-[10vh]">
+          <div className="w-full lg:w-[52%] sticky top-24 lg:top-32">
             <EventGallery
               events={eventsData}
               currentIndex={currentEventIndex}

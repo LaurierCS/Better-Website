@@ -1,4 +1,4 @@
-import Bracket from "../../assets/doodles/Bracket.svg";
+import Bracket from "../../../public/assets/doodles/Bracket.svg";
 import "../styles/fadeSlideUpAnimation.css";
 
 const HTMLBox = () => {
