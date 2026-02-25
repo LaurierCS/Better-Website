@@ -17,9 +17,9 @@ interface MascotsProps {
 
 // Mascot data
 const mascots = [
-  { name: 'Coco', path: '/src/assets/mascots/Coco.svg' },
-  { name: 'Doug', path: '/src/assets/mascots/Doug.svg' },
-  { name: 'Krill', path: '/src/assets/mascots/Krill.svg' },
+  { name: 'Coco', path: '/assets/mascots/Coco.svg' },
+  { name: 'Doug', path: '/assets/mascots/Doug.svg' },
+  { name: 'Krill', path: '/assets/mascots/Krill.svg' },
 ] as const;
 
 /**

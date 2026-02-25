@@ -1,7 +1,7 @@
-import { useFirestoreCollection } from '../hooks/useFirestoreCollection';
+import { useEffect, useState, useCallback } from 'react';
+import { supabase } from '../services/supabase';
 import { TeamCard } from '../components/team/TeamCard';
 import { ScrapbookText } from '../components/universal/ScrapbookText';
-import { where } from 'firebase/firestore';
 import { DEPARTMENTS, getDepartmentFromRole, getRoleHierarchy, type Department } from '../utils/departmentMap';
 
 /**
@@ -13,20 +13,38 @@ import { DEPARTMENTS, getDepartmentFromRole, getRoleHierarchy, type Department }
 interface TeamMember {
   id: string;
   name: string;
-  picture: string;
+  picture_url: string;
   role?: string;
-  links?: {
-    github?: string;
-    linkedin?: string;
-  };
+  github_url?: string;
+  linkedin_url?: string;
 }
 
 export function TeamSection() {
-  // Fetch public team members from Firestore
-  const { data: teamMembers, loading, error } = useFirestoreCollection<TeamMember>(
-    'team',
-    where('is_public', '==', true)
-  );
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  const fetchTeam = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const { data, error: sbError } = await supabase
+        .from('team')
+        .select('id, name, role, picture_url, github_url, linkedin_url')
+        .eq('is_public', true);
+
+      if (sbError) throw sbError;
+      setTeamMembers(data as TeamMember[]);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error(String(err)));
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchTeam();
+  }, [fetchTeam]);
 
   /**
    * Groups team members by their department based on role mapping
