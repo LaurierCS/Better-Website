@@ -82,10 +82,10 @@ export function TeamSection() {
   const membersByDepartment = groupMembersByDepartment();
 
   return (
-    <section className="w-full px-4 py-28 sm:py-40 overflow-hidden">
+    <section className="w-full px-4 pt-48 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Main Team Header */}
-        <div className="mb-16 sm:mb-20 text-center">
+        <div className="mb-16 sm:mb-8 text-center">
           <ScrapbookText
             text="Meet the Team"
             letterSize={110}
