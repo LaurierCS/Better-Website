@@ -106,15 +106,20 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> 
         transition: 'transform 0.2s ease-out',
         marginRight: `${-size * 0.45}px`, // Dynamic overlap based on size
         zIndex,
-        animation: `scrapbookLetterAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both`,
       }}
     >
-      <img
-        src={assetPath}
-        alt={letter}
-        className={`object-contain drop-shadow-lg hover:drop-shadow-xl transition-shadow ${letterClassName || ''}`}
-        style={{ width: `${size}px`, height: `${size}px` }}
-      />
+      <div
+        style={{
+          animation: `scrapbookLetterAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both`,
+        }}
+      >
+        <img
+          src={assetPath}
+          alt={letter}
+          className={`object-contain drop-shadow-lg hover:drop-shadow-xl transition-shadow ${letterClassName || ''}`}
+          style={{ width: `${size}px`, height: `${size}px` }}
+        />
+      </div>
     </div>
   );
 };
