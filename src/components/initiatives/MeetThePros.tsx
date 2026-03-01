@@ -1,11 +1,9 @@
 import ScrapbookText from "../universal/ScrapbookText";
 import ImageGallery from "../universal/ImageGallery";
-import meetTheProsF25 from "../../assets/events/Meet_the_pros_F25.jpg";
-import meetTheProsW25 from "../../assets/events/Meet_the_pros_W25.jpg";
 
 export default function MeetThePros() {
     // Image gallery data for Meet the Pros events
-    const galleryImages = [meetTheProsF25, meetTheProsW25];
+    const galleryImages = ["/assets/events/Meet_the_pros_F25.jpg", "/assets/events/Meet_the_pros_W25.jpg"];
     const galleryCaptions = [
         "Meet the Pros - Fall 2025: Industry professionals sharing their expertise",
         "Meet the Pros - Winter 2025: Networking and Q&A with tech leaders"

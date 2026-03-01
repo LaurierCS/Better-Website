@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import logoFull from '../../assets/logos/LCS_Logo_Long_White_SVG.svg';
-import logoIcon from '../../assets/logos/LCS_Icon_White_SVG.svg';
 
 export default function Header() {
   // Track scroll state for background blur effect
@@ -34,12 +32,12 @@ export default function Header() {
         {/* Logo - responsive sizing */}
         <div className="flex items-center shrink-0">
           <img 
-            src={logoFull} 
+            src="/assets/logos/LCS_Logo_Long_White_SVG.svg" 
             alt="LCS Logo" 
             className="hidden md:block h-8 md:h-10"
           />
           <img 
-            src={logoIcon} 
+            src="/assets/logos/LCS_Icon_White_SVG.svg" 
             alt="LCS Logo" 
             className="block md:hidden h-8"
           />
