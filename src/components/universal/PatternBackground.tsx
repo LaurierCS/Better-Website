@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
 export const PatternBackground = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 768;
+  });
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
