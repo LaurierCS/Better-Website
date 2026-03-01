@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import SocialLinks from './SocialLinks';
 
 export default function Header() {
   // Track scroll state for background blur effect
@@ -51,6 +52,11 @@ export default function Header() {
           <NavLink href="#team">Our Team</NavLink>
         </nav>
 
+        {/* Desktop Social Links */}
+        <div className="hidden md:block">
+          <SocialLinks />
+        </div>
+
         {/* Mobile Hamburger Button */}
         <button
           className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 z-50"
@@ -86,6 +92,9 @@ export default function Header() {
           <NavLink href="#impact" onClick={handleNavClick}>Impact</NavLink>
           <NavLink href="#initiatives" onClick={handleNavClick}>Initiatives</NavLink>
           <NavLink href="#team" onClick={handleNavClick}>Our Team</NavLink>
+          <div className="border-t border-white/20 w-full pt-4 mt-4 flex justify-center">
+            <SocialLinks />
+          </div>
         </nav>
       </div>
     </header>
