@@ -4,8 +4,12 @@ import HeroPage from './pages/Hero';
 import Events from './pages/Events';
 import Initiatives from './pages/Initiatives';
 import { TeamSection } from './pages/Team';
+import { useRandomScrollbarColor } from './hooks/useRandomScrollbarColor';
 
 function App() {
+  // Set random scrollbar color on page load
+  useRandomScrollbarColor();
+
   return (
     <div className="relative w-full bg-linear-to-b from-slate-800 to-slate-900 min-h-screen">
       <PatternBackground />
