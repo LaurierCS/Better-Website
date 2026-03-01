@@ -1,4 +1,3 @@
-import Bracket from "../../../public/assets/doodles/Bracket.svg";
 import "../styles/fadeSlideUpAnimation.css";
 
 const HTMLBox = () => {
@@ -6,7 +5,7 @@ const HTMLBox = () => {
     <div className="fadeSlideUpFromBottom relative w-full max-w-3xl max-h-max mx-auto px-2 sm:px-4">
       {/* Bracket SVG - Left */}
       <div className="hidden md:block absolute left-0 top-0 bottom-0 -translate-x-26 w-27 opacity-75">
-        <img src={Bracket} alt="bracket" className="w-full h-full" />
+        <img src="/assets/doodles/Bracket.svg" alt="bracket" className="w-full h-full" />
       </div>
 
       {/* macOS Window Container */}
@@ -73,7 +72,7 @@ const HTMLBox = () => {
 
       {/* Bracket SVG - Right */}
       <div className="hidden md:block absolute right-0 top-0 bottom-0 translate-x-26 w-27 opacity-75 rotate-180">
-        <img src={Bracket} alt="bracket" className="w-full h-full" />
+        <img src="/assets/doodles/Bracket.svg" alt="bracket" className="w-full h-full" />
       </div>
     </div>
   );

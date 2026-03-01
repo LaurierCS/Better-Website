@@ -1,7 +1,18 @@
-import patternSvg from '../../assets/patterns/Icon_Pattern.svg';
+import { useState, useEffect } from 'react';
 
 export const PatternBackground = () => {
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div
@@ -15,7 +26,7 @@ export const PatternBackground = () => {
         style={{
           position: 'absolute',
           inset: '-50%',
-          backgroundImage: `url(${patternSvg})`,
+          backgroundImage: `url(/assets/patterns/Icon_Pattern.svg)`,
           backgroundRepeat: 'repeat',
           backgroundSize: isMobile ? '600px' : '800px',
           opacity: 0.02,
