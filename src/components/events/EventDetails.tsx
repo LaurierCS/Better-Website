@@ -56,7 +56,7 @@ export default function EventDetails({ event, eventIndex }: EventDetailsProps) {
       </h2>
 
       <p
-        className="text-white/90 font-light leading-relaxed mb-4 event-detail-item max-h-[200px] overflow-y-auto w-full min-w-0"
+        className="text-white/90 font-light leading-relaxed mb-4 event-detail-item max-h-50 overflow-y-auto w-full min-w-0"
         style={{
           fontSize: 'clamp(0.75rem, 1.5vw + 0.25rem, 1.5rem)',
         }}
@@ -67,7 +67,7 @@ export default function EventDetails({ event, eventIndex }: EventDetailsProps) {
       <div className="space-y-3 mt-6 pt-0">
         <div className="flex items-center gap-4 event-detail-item">
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+            className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
             style={{ backgroundColor: accentColor + '20', border: `1px solid ${accentColor}40` }}
           >
             <svg className="w-5 h-5" fill="currentColor" style={{ color: accentColor }} viewBox="0 0 20 20">
@@ -79,7 +79,7 @@ export default function EventDetails({ event, eventIndex }: EventDetailsProps) {
 
         <div className="flex items-center gap-4 event-detail-item">
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+            className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
             style={{ backgroundColor: accentColor + '20', border: `1px solid ${accentColor}40` }}
           >
             <svg className="w-5 h-5" fill="currentColor" style={{ color: accentColor }} viewBox="0 0 20 20">
@@ -91,7 +91,7 @@ export default function EventDetails({ event, eventIndex }: EventDetailsProps) {
 
         <div className="flex items-center gap-4 event-detail-item">
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+            className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
             style={{ backgroundColor: accentColor + '20', border: `1px solid ${accentColor}40` }}
           >
             <svg className="w-5 h-5" fill="currentColor" style={{ color: accentColor }} viewBox="0 0 20 20">

@@ -33,7 +33,7 @@ export default function Events() {
         {/* Main Content: Two-column layout */}
         <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-10 items-start">
           {/* Left: Event Details */}
-          <div className="w-full lg:w-[48%] lg:pr-4 min-h-[600px] lg:min-h-[500px] flex flex-col">
+          <div className="w-full lg:w-[48%] lg:pr-4 min-h-150 lg:min-h-125 flex flex-col">
             <EventDetails event={currentEvent} eventIndex={currentEventIndex} />
           </div>
 
