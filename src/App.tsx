@@ -1,4 +1,5 @@
 import Header from './components/universal/Header';
+import Footer from './components/universal/Footer';
 import { PatternBackground } from './components/universal/PatternBackground';
 import HeroPage from './pages/Hero';
 import Events from './pages/Events';
@@ -11,7 +12,7 @@ function App() {
   useRandomScrollbarColor();
 
   return (
-    <div className="relative w-full bg-linear-to-b from-slate-800 to-slate-900 min-h-screen">
+    <div className="relative w-full bg-linear-to-b from-slate-800 to-slate-900">
       <PatternBackground />
       <div className="relative z-10">
         <Header />
@@ -28,6 +29,7 @@ function App() {
           <TeamSection />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
