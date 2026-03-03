@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RevealOnScroll from '../universal/RevealOnScroll';
 import { Mascots } from '../universal/Mascots';
 import SignUpForm from './SignUpForm';
 
@@ -7,8 +8,9 @@ export default function SpeakerSignup() {
 
   return (
     <>
-      <div className="w-full max-w-6xl mx-auto px-4 py-8">
-        <div className="relative bg-gray-950 rounded-3xl border border-yellow-400 p-4 sm:p-6 md:p-8" style={{ borderColor: 'var(--color-accent-yellow)' }}>
+      <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="50px" once={true}>
+        <div className="w-full max-w-6xl mx-auto px-4 py-8">
+          <div className="relative bg-gray-950 rounded-3xl border border-yellow-400 p-4 sm:p-6 md:p-8" style={{ borderColor: 'var(--color-accent-yellow)' }}>
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
             {/* Doug Mascot positioned to pop out of top and clip at bottom - trying */}
             <div className="hidden md:block absolute bottom-3 -left-6 sm:-left-2 md:left-2 translate-y-8 pointer-events-none">
@@ -40,6 +42,7 @@ export default function SpeakerSignup() {
           </div>
         </div>
       </div>
+    </RevealOnScroll>
 
       {/* Popup Form Modal */}
       <SignUpForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />

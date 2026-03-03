@@ -2,10 +2,13 @@
  * Welcome Component
  * Displays "WELCOME TO" using decorative letter assets arranged in a scrapbook style,
  * followed by "Laurier Computing Society"
+ * 
+ * Now with scroll-reveal animations!
  */
 
 import ScrapbookText from '../universal/ScrapbookText';
 import Mascots from '../universal/Mascots';
+import RevealOnScroll from '../universal/RevealOnScroll';
 import '../styles/fadeSlideUpAnimation.css';
 
 /**
@@ -22,12 +25,18 @@ export const Welcome: React.FC = () => {
         </div>
 
         {/* Laurier Computing Society Text */}
-        <h1
-          className="font-bold text-white text-center md:pl-5 fadeSlideUpFromBottom text-2xl sm:text-3xl md:text-5xl"
-          style={{ fontFamily: 'var(--font-dosis)', lineHeight: '1.2' }}
+        <RevealOnScroll
+          visibleClassName="fadeSlideUpFromBottom"
+          rootMargin="50px"
+          once={true}
         >
-          LAURIER COMPUTING SOCIETY
-        </h1>
+          <h1
+            className="font-bold text-white text-center md:pl-5 text-2xl sm:text-3xl md:text-5xl"
+            style={{ fontFamily: 'var(--font-dosis)', lineHeight: '1.2' }}
+          >
+            LAURIER COMPUTING SOCIETY
+          </h1>
+        </RevealOnScroll>
       </div>
       {/* Mascots Section */}
       <div className="hidden md:flex">
