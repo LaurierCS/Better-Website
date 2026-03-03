@@ -4,6 +4,8 @@
  * Styled with dark theme and accent color hover effects
  */
 
+import RevealOnScroll from '../universal/RevealOnScroll';
+
 interface TeamMember {
   id: string;
   name: string;
@@ -50,12 +52,13 @@ export function TeamCard({ member }: TeamCardProps) {
   const accentColor = accentColorMap[colorIndex];
 
   return (
-    <div className="group relative flex items-center gap-4 md:gap-5 py-4 px-4 md:px-6 transition-all duration-300 cursor-pointer hover:scale-105">
-      {/* Image Container - Circular with colored border */}
-      <div 
-        className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 shrink-0 rounded-full overflow-hidden border-3 md:border-4 group-hover:scale-110 transition-transform duration-300"
-        style={{ borderColor: accentColor.border }}
-      >
+    <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="30px" once={true}>
+      <div className="group relative flex items-center gap-4 md:gap-5 py-4 px-4 md:px-6 transition-all duration-300 cursor-pointer hover:scale-105">
+        {/* Image Container - Circular with colored border */}
+        <div 
+          className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 shrink-0 rounded-full overflow-hidden border-3 md:border-4 group-hover:scale-110 transition-transform duration-300"
+          style={{ borderColor: accentColor.border }}
+        >
         {member.picture_url ? (
           <img
             src={member.picture_url}
@@ -70,53 +73,54 @@ export function TeamCard({ member }: TeamCardProps) {
             </div>
           </div>
         )}
+        </div>
+
+        {/* Info Section */}
+        <div className="flex flex-col gap-1 flex-1 min-w-0">
+          {/* Member Name */}
+          <h3 className="font-dosis font-bold text-white text-base sm:text-lg md:text-xl group-hover:text-[#FFD670] transition-colors duration-200 wrap-break-word leading-tight">
+            {member.name}
+          </h3>
+          
+          {/* Member Role */}
+          {member.role && (
+            <p className="font-montserrat font-thin text-gray-400 text-sm md:text-base wrap-break-word leading-tight">
+              {member.role}
+            </p>
+          )}
+
+          {/* Social Links Container */}
+          {(member.github_url || member.linkedin_url) && (
+            <div className="flex gap-2 mt-1">
+              {/* GitHub Link */}
+              {showGithub && member.github_url && (
+                <a
+                  href={member.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1 rounded transition-all duration-200 text-white hover:text-[#FF9FC4]"
+                  title="GitHub"
+                >
+                  <GitHubIcon />
+                </a>
+              )}
+
+              {/* LinkedIn Link */}
+              {showLinkedin && member.linkedin_url && (
+                <a
+                  href={member.linkedin_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1 rounded transition-all duration-200 text-white hover:text-[#268AF9]"
+                  title="LinkedIn"
+                >
+                  <LinkedInIcon />
+                </a>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-
-      {/* Info Section */}
-      <div className="flex flex-col gap-1 flex-1 min-w-0">
-        {/* Member Name */}
-        <h3 className="font-dosis font-bold text-white text-base sm:text-lg md:text-xl group-hover:text-[#FFD670] transition-colors duration-200 wrap-break-word leading-tight">
-          {member.name}
-        </h3>
-        
-        {/* Member Role */}
-        {member.role && (
-          <p className="font-montserrat font-thin text-gray-400 text-sm md:text-base wrap-break-word leading-tight">
-            {member.role}
-          </p>
-        )}
-
-        {/* Social Links Container */}
-        {(member.github_url || member.linkedin_url) && (
-          <div className="flex gap-2 mt-1">
-            {/* GitHub Link */}
-            {showGithub && member.github_url && (
-              <a
-                href={member.github_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1 rounded transition-all duration-200 text-white hover:text-[#FF9FC4]"
-                title="GitHub"
-              >
-                <GitHubIcon />
-              </a>
-            )}
-
-            {/* LinkedIn Link */}
-            {showLinkedin && member.linkedin_url && (
-              <a
-                href={member.linkedin_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1 rounded transition-all duration-200 text-white hover:text-[#268AF9]"
-                title="LinkedIn"
-              >
-                <LinkedInIcon />
-              </a>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
+    </RevealOnScroll>
   );
 }

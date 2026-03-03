@@ -2,9 +2,12 @@
  * Mascots Component
  * Displays the three mascot characters (Coco, Doug, Krill) in an overlapping arrangement
  * Similar to ScrapbookText but with mascot SVGs instead of letters
+ * 
+ * Now supports scroll-reveal animations - mascots animate when scrolled into view!
  */
 
 import React, { useMemo } from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import '../styles/scrapbookAnimations.css';
 
 interface MascotsProps {
@@ -46,6 +49,7 @@ interface MascotItemProps {
   size: number;
   overlapAmount: number;
   mascotIndex: number;
+  isVisible?: boolean; // Whether element is visible in viewport
 }
 
 const MascotItem: React.FC<MascotItemProps> = ({
@@ -58,6 +62,7 @@ const MascotItem: React.FC<MascotItemProps> = ({
   size,
   overlapAmount,
   mascotIndex,
+  isVisible = true,
 }) => {
   const staggerDelay = mascotIndex * 120; // 120ms stagger between mascots
 
@@ -69,7 +74,7 @@ const MascotItem: React.FC<MascotItemProps> = ({
         transition: 'transform 0.2s ease-out',
         marginRight: `-${overlapAmount}px`,
         zIndex,
-        animation: `mascotAppear 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both`,
+        animation: isVisible ? `mascotAppear 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both` : 'none',
       }}
     >
       <img
@@ -95,6 +100,13 @@ export const Mascots: React.FC<MascotsProps> = ({
 }) => {
   // Track window width for responsive sizing
   const [isMobile, setIsMobile] = React.useState(false);
+
+  // Observer for scroll-reveal animation
+  const { ref, isVisible } = useIntersectionObserver({
+    rootMargin: '50px',
+    threshold: 0.1,
+    once: true,
+  });
 
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -122,7 +134,7 @@ export const Mascots: React.FC<MascotsProps> = ({
   }, []);
 
   return (
-    <div className={`flex items-center justify-center ${className}`}>
+    <div ref={ref} className={`flex items-center justify-center ${className}`}>
       {displayedMascots.map((mascot, index) => (
         <MascotItem
           key={mascot.name}
@@ -135,6 +147,7 @@ export const Mascots: React.FC<MascotsProps> = ({
           zIndex={index + 1}
           size={responsiveMascotSize}
           overlapAmount={overlapAmount}
+          isVisible={isVisible}
         />
       ))}
     </div>

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import EventDetails from '../components/events/EventDetails';
 import EventGallery from '../components/events/EventGallery';
 import ScrapbookText from '../components/universal/ScrapbookText';
+import RevealOnScroll from '../components/universal/RevealOnScroll';
 import { eventsData } from '../data/eventsData';
 import '../components/styles/fadeSlideUpAnimation.css';
 
@@ -21,14 +22,19 @@ export default function Events() {
     >
       <div className="w-full max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="mb-8 fadeSlideUpFromBottom">
+        <RevealOnScroll
+          visibleClassName="fadeSlideUpFromBottom"
+          className="mb-8"
+          rootMargin="50px"
+          once={true}
+        >
           <ScrapbookText
             text="UPCOMING EVENTS"
             letterSize={112}
             mobileLetterSize={56}
             className="text-left"
           />
-        </div>
+        </RevealOnScroll>
 
         {/* Main Content: Two-column layout */}
         <div className="flex flex-col-reverse lg:flex-row gap-6 lg:gap-10 items-start">

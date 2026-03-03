@@ -5,6 +5,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import RevealOnScroll from '../universal/RevealOnScroll';
 import type { EventData } from '../../data/eventsData';
 
 // Accent colors matching the site
@@ -52,13 +53,14 @@ export default function EventGallery({
   }
 
   return (
-    <div
-      className="w-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Image Container */}
-      <div className="relative w-full bg-slate-800/50 rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '16/11' }}>
+    <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="50px" once={true}>
+      <div
+        className="w-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Image Container */}
+        <div className="relative w-full bg-slate-800/50 rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '16/11' }}>
         {events.map((event, index) => {
           const isActive = index === currentIndex;
           const isPrev = index === (currentIndex - 1 + events.length) % events.length;
@@ -122,7 +124,8 @@ export default function EventGallery({
             aria-label={`Go to event ${index + 1}`}
           />
         ))}
+        </div>
       </div>
-    </div>
+    </RevealOnScroll>
   );
 }

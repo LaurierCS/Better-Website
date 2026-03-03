@@ -1,10 +1,12 @@
 /**
  * Stats Component
  * Displays key club statistics with animated count-up effects
+ * Now with scroll-reveal - animations trigger when scrolled into view!
  */
 
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 /**
  * Individual stat item configuration
@@ -43,18 +45,27 @@ const statsData: StatItem[] = [
 export const Stats = () => {
   const [startAnimation, setStartAnimation] = useState(false);
 
-  // Trigger animation on component mount
-  useEffect(() => {
-    // Small delay for smoother visual experience
-    const timer = setTimeout(() => {
-      setStartAnimation(true);
-    }, 100);
+  // Detect when Stats component scrolls into view
+  const { ref, isVisible } = useIntersectionObserver({
+    rootMargin: '50px',
+    threshold: 0.1,
+    once: true,
+  });
 
-    return () => clearTimeout(timer);
-  }, []);
+  // Trigger animation when component is visible
+  useEffect(() => {
+    if (isVisible) {
+      // Small delay for smoother visual experience
+      const timer = setTimeout(() => {
+        setStartAnimation(true);
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-4 md:py-16">
+    <div ref={ref} className="w-full max-w-6xl mx-auto px-4 py-4 md:py-16">
       {/* Stats Grid - flex row mobile, 3 columns desktop */}
       <div className="flex flex-row md:grid md:grid-cols-3 gap-4 md:gap-12 lg:gap-16 items-center justify-center md:items-start">
         {statsData.map((stat, index) => (

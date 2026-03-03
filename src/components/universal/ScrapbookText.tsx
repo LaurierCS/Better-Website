@@ -2,9 +2,12 @@
  * ScrapbookText Component
  * Universal component for displaying text in scrapbook style using letter assets
  * Supports letters: A, C, D, E, F, G, H, I, K, L, M, N, O, P, R, S, T, U, V, W
+ * 
+ * Now supports scroll-reveal animations - letters animate when scrolled into view!
  */
 
 import React, { useMemo } from 'react';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import '../styles/scrapbookAnimations.css';
 
 interface ScrapbookTextProps {
@@ -83,6 +86,7 @@ interface ScrapbookLetterProps {
   zIndex: number;
   size: number;
   letterClassName?: string;
+  isVisible?: boolean; // Whether element is visible in viewport
 }
 
 const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> = ({
@@ -94,6 +98,7 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> 
   size,
   letterClassName,
   letterIndex,
+  isVisible = true,
 }) => {
   const assetPath = letterAssets[letter];
   const staggerDelay = letterIndex * 60; // 60ms stagger between letters
@@ -110,7 +115,7 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> 
     >
       <div
         style={{
-          animation: `scrapbookLetterAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both`,
+          animation: isVisible ? `scrapbookLetterAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both` : 'none',
         }}
       >
         <img
@@ -138,6 +143,13 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   // Track window width for responsive sizing
   const [isMobile, setIsMobile] = React.useState(false);
 
+  // Observer for scroll-reveal animation
+  const { ref, isVisible } = useIntersectionObserver({
+    rootMargin: '50px',
+    threshold: 0.1,
+    once: true,
+  });
+
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -164,7 +176,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   }, [uppercaseText]);
 
   return (
-    <div className={`flex items-center justify-center flex-wrap p-4 ${className}`}>
+    <div ref={ref} className={`flex items-center justify-center flex-wrap p-4 ${className}`}>
       {uppercaseText.split('').map((char, index) => {
         if (char === ' ') {
           return (
@@ -191,6 +203,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
             scale={transform.scale}
             size={responsiveLetterSize}
             letterClassName={letterClassName}
+            isVisible={isVisible}
           />
         );
       })}

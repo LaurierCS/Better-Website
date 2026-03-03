@@ -1,5 +1,6 @@
 import ScrapbookText from "../universal/ScrapbookText";
 import ImageGallery from "../universal/ImageGallery";
+import RevealOnScroll from "../universal/RevealOnScroll";
 
 export default function MeetThePros() {
     // Image gallery data for Meet the Pros events
@@ -17,30 +18,47 @@ export default function MeetThePros() {
             <div className="w-full lg:flex-1 lg:max-w-2xl">
                 <ScrapbookText text="MEET THE" letterSize={112} mobileLetterSize={48} className="justify-start -ml-5" />
 
-                <h2 className="font-black text-white text-left leading-tight mt-0 md:mt-1 fadeSlideUpFromBottom text-3xl md:text-5xl" style={{ fontFamily: 'Dosis, sans-serif', fontSize: 'clamp(1.875rem, 5vw, 4.7rem)' }}>
+                <RevealOnScroll
+                  visibleClassName="fadeSlideUpFast"
+                  rootMargin="50px"
+                  once={true}
+                >
+                  <h2 className="font-black text-white text-left leading-tight mt-0 md:mt-1 text-3xl md:text-5xl" style={{ fontFamily: 'Dosis, sans-serif', fontSize: 'clamp(1.875rem, 5vw, 4.7rem)' }}>
                     PROFESSIONALS
-                </h2>
+                  </h2>
+                </RevealOnScroll>
 
-                <div className="mt-6 text-left font-light text-white text-sm md:text-lg lg:text-2xl leading-relaxed" style={{ fontFamily: 'Dosis, sans-serif' }}>
+                <RevealOnScroll
+                  visibleClassName="fadeSlideUpFast"
+                  rootMargin="50px"
+                  once={true}
+                >
+                  <div className="mt-6 text-left font-light text-white text-sm md:text-lg lg:text-2xl leading-relaxed" style={{ fontFamily: 'Dosis, sans-serif' }}>
                     <p className="mb-4">
                         Our flagship event bringing together professionals from different fields to give students a first hand retelling of the field and provide them with advice.
                     </p>
                     <p>
                         We bring out the coolest guest speakers from the tech industry and giving you a chance to ask questions, hear their experience, and even make meaningful connections.
                     </p>
-                </div>
+                  </div>
+                </RevealOnScroll>
             </div>
 
             {/* Image Gallery */}
-            <div className="w-full lg:flex-1 lg:mt-15">
-                <ImageGallery 
-                    images={galleryImages} 
-                    captions={galleryCaptions}
-                    showCounter={false}
-                    width="100%"
-                    aspectRatio="4/3"
-                />
-            </div>
+            <RevealOnScroll
+              visibleClassName="fadeSlideUpFast"
+              rootMargin="50px"
+              once={true}
+              className="w-full lg:flex-1 lg:mt-15"
+            >
+              <ImageGallery 
+                  images={galleryImages} 
+                  captions={galleryCaptions}
+                  showCounter={false}
+                  width="100%"
+                  aspectRatio="4/3"
+              />
+            </RevealOnScroll>
         </div>
     </div>
     );
