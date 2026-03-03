@@ -1,11 +1,7 @@
-import { useState } from 'react';
 import RevealOnScroll from '../universal/RevealOnScroll';
 import { Mascots } from '../universal/Mascots';
-import SignUpForm from './SignUpForm';
 
 export default function SpeakerSignup() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
   return (
     <>
       <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="50px" once={true}>
@@ -26,8 +22,10 @@ export default function SpeakerSignup() {
                 We'd love to hear from anyone eager to inform the youth of today about the dangers of the outside world [employment]. Click the button below and sign up to attend our next session!
               </p>
               <div className="flex justify-center">
-                <button 
-                  onClick={() => setIsFormOpen(true)}
+                <a 
+                  href="https://forms.gle/BpvTx7gEzU4M7vwT7"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-semibold px-3 sm:px-6 py-2 rounded-md transition-all border hover:bg-yellow-400/10 text-xs md:text-base"
                   style={{ 
                     fontFamily: 'Dosis, sans-serif',
@@ -36,16 +34,13 @@ export default function SpeakerSignup() {
                   }}
                 >
                   SPEAKER SIGN UP
-                </button>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </RevealOnScroll>
-
-      {/* Popup Form Modal */}
-      <SignUpForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
     </>
   );
 }
