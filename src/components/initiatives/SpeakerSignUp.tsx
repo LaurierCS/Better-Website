@@ -23,7 +23,7 @@ export default function SpeakerSignup() {
                 WANT TO BE A SPEAKER AT OUR NEXT MTP SESSION?
               </h2>
               <p className="text-gray-300 text-xs md:text-base mb-4 md:mb-6 text-center md:text-left wrap-break-word" style={{ fontFamily: 'Dosis, sans-serif' }}>
-                We'd love to hear from anyone eager to inform the youth of today about the dangers of the outside world [employement]. Click the button below and sign up to attend our next session!
+                We'd love to hear from anyone eager to inform the youth of today about the dangers of the outside world [employment]. Click the button below and sign up to attend our next session!
               </p>
               <div className="flex justify-center">
                 <button 
