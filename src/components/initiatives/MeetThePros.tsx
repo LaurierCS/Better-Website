@@ -16,7 +16,7 @@ export default function MeetThePros() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
             {/* Text Content */}
             <div className="w-full lg:flex-1 lg:max-w-2xl">
-                <ScrapbookText text="MEET THE PROFESSIONALS" letterSize={72} mobileLetterSize={45} className="justify-center lg:justify-start -ml-0 lg:-ml-5" />
+                <ScrapbookText text="MEET THE PROFESSIONALS" letterSize={72} mobileLetterSize={45} className="justify-center lg:justify-start ml-0 lg:-ml-5" />
 
                 <RevealOnScroll
                   visibleClassName="fadeSlideUpFast"

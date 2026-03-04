@@ -36,13 +36,14 @@ export function useIntersectionObserver(options: UseIntersectionObserverOptions 
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        const currentRef = ref.current;
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
                     // Disconnect after first intersection if 'once' is true
-                    if (once && ref.current) {
-                        observer.unobserve(ref.current);
+                    if (once && currentRef) {
+                        observer.unobserve(currentRef);
                     }
                 } else if (!once) {
                     // If not in 'once' mode, allow animation to replay when scrolling back
@@ -55,13 +56,13 @@ export function useIntersectionObserver(options: UseIntersectionObserverOptions 
             }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
     }, [rootMargin, threshold, once]);

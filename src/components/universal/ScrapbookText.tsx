@@ -185,15 +185,16 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
     return generateRandomTransforms(totalLetters);
   }, [totalLetters]);
 
-  // Pre-calculate word groups with letter start indices to avoid mutable vars in render
+  // Pre-calculate word groups with letter start indices
   const wordGroups = useMemo(() => {
     const words = uppercaseText.split(' ');
+    const result: Array<{ word: string; start: number }> = [];
     let offset = 0;
-    return words.map((word) => {
-      const start = offset;
+    for (const word of words) {
+      result.push({ word, start: offset });
       offset += word.length;
-      return { word, start };
-    });
+    }
+    return result;
   }, [uppercaseText]);
 
   return (
