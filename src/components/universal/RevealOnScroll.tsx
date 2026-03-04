@@ -82,8 +82,17 @@ export const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
   const animationClass = isVisible ? visibleClassName : hiddenClassName;
   const combinedClassName = `${className} ${animationClass}`.trim();
 
+  // Pre-set the element to its animation start state before it enters view.
+  // This prevents the "show → flash invisible → animate in" bug on mobile,
+  // which happens because the CSS animation `from` keyframe (opacity:0) briefly
+  // overrides the element's natural opacity:1 when the class is first applied.
+  const preAnimationStyle =
+    !isVisible && visibleClassName
+      ? { opacity: 0 as const, transform: 'translateY(20px)' }
+      : undefined;
+
   return (
-    <Component ref={ref} className={combinedClassName}>
+    <Component ref={ref} className={combinedClassName} style={preAnimationStyle}>
       {children}
     </Component>
   );
