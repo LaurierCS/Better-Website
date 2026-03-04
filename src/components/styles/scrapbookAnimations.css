@@ -20,6 +20,17 @@
     }
 }
 
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    [style*="scrapbookLetterAppear"],
+    [style*="mascotAppear"] {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
 /* Mascot animation - smooth bounce appearance left to right */
 @keyframes mascotAppear {
     0% {

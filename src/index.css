@@ -50,3 +50,10 @@ html::-webkit-scrollbar-thumb:hover {
 * {
     box-sizing: border-box;
 }
+
+/* Word-break utility: prevents overflow while allowing long words to break at
+   natural break points. Equivalent to Tailwind's break-words. */
+.wrap-break-word {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}

@@ -65,19 +65,19 @@ export const Stats = () => {
   }, [isVisible]);
 
   return (
-    <div ref={ref} className="w-full max-w-6xl mx-auto px-4 py-4 md:py-16">
-      {/* Stats Grid - flex row mobile, 3 columns desktop */}
-      <div className="flex flex-row md:grid md:grid-cols-3 gap-4 md:gap-12 lg:gap-16 items-center justify-center md:items-start">
+    <div ref={ref} className="w-full max-w-6xl mx-auto px-4 py-8 md:py-16">
+      {/* Stats Grid - stacked vertically on mobile, 3 columns on md+ */}
+      <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 items-center md:items-start">
         {statsData.map((stat, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center text-center flex-1"
+            className="flex flex-col items-center justify-center text-center w-full"
           >
 
             {/* Number Container - Animated count-up */}
-            <div className="mb-1 md:mb-2">
+            <div className="mb-2 md:mb-2">
               <span
-                className="text-2xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                 style={{
                   fontFamily: 'var(--font-dosis)',
                   color: '#ffffff',
@@ -108,7 +108,7 @@ export const Stats = () => {
 
             {/* Label Text - Regular weight Dosis font */}
             <p
-              className="text-xs md:text-xl lg:text-2xl text-gray-300 tracking-wide"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 tracking-wide"
               style={{
                 fontFamily: 'var(--font-dosis)',
               }}

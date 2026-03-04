@@ -16,24 +16,14 @@ export default function MeetThePros() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
             {/* Text Content */}
             <div className="w-full lg:flex-1 lg:max-w-2xl">
-                <ScrapbookText text="MEET THE" letterSize={112} mobileLetterSize={48} className="justify-start -ml-5" />
+                <ScrapbookText text="MEET THE PROFESSIONALS" letterSize={72} mobileLetterSize={45} className="justify-center lg:justify-start -ml-0 lg:-ml-5" />
 
                 <RevealOnScroll
                   visibleClassName="fadeSlideUpFast"
                   rootMargin="50px"
                   once={true}
                 >
-                  <h2 className="font-black text-white text-left leading-tight mt-0 md:mt-1 text-3xl md:text-5xl" style={{ fontFamily: 'Dosis, sans-serif', fontSize: 'clamp(1.875rem, 5vw, 4.7rem)' }}>
-                    PROFESSIONALS
-                  </h2>
-                </RevealOnScroll>
-
-                <RevealOnScroll
-                  visibleClassName="fadeSlideUpFast"
-                  rootMargin="50px"
-                  once={true}
-                >
-                  <div className="mt-6 text-left font-light text-white text-sm md:text-lg lg:text-2xl leading-relaxed" style={{ fontFamily: 'Dosis, sans-serif' }}>
+                  <div className="mt-6 text-left font-light text-white text-base md:text-lg lg:text-2xl leading-relaxed" style={{ fontFamily: 'Dosis, sans-serif' }}>
                     <p className="mb-4">
                         Our flagship event bringing together professionals from different fields to give students a first hand retelling of the field and provide them with advice.
                     </p>

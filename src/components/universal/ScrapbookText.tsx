@@ -141,26 +141,36 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   letterClassName = '',
 }) => {
   // Track window width for responsive sizing
-  const [isMobile, setIsMobile] = React.useState(false);
+  // Uses two breakpoints: sm (640px) and md (768px)
+  const [windowWidth, setWindowWidth] = React.useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth : 1024
+  );
 
   // Observer for scroll-reveal animation
   const { ref, isVisible } = useIntersectionObserver({
-    rootMargin: '50px',
-    threshold: 0.1,
+    rootMargin: '0px',
+    threshold: 0.05,
     once: true,
   });
 
   React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Calculate responsive letter size
-  const responsiveLetterSize = isMobile 
-    ? (mobileLetterSize ?? letterSize * 0.5) 
-    : letterSize;
+  // Calculate responsive letter size with sm breakpoint
+  const responsiveLetterSize = (() => {
+    if (windowWidth < 640) {
+      // Mobile: explicit mobileLetterSize or 45% of desktop
+      return mobileLetterSize ?? Math.round(letterSize * 0.45);
+    }
+    if (windowWidth < 768) {
+      // Tablet-small: 65% of desktop
+      return Math.round(letterSize * 0.65);
+    }
+    return letterSize;
+  })();
 
   // Validate text on mount
   useMemo(() => {
@@ -168,45 +178,56 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   }, [text]);
 
   const uppercaseText = text.toUpperCase();
+  const totalLetters = uppercaseText.replace(/ /g, '').length;
 
   // Generate random transforms once per component instance (changes on reload)
   const transforms = useMemo(() => {
-    const letterCount = uppercaseText.replace(/ /g, '').length;
-    return generateRandomTransforms(letterCount);
+    return generateRandomTransforms(totalLetters);
+  }, [totalLetters]);
+
+  // Pre-calculate word groups with letter start indices to avoid mutable vars in render
+  const wordGroups = useMemo(() => {
+    const words = uppercaseText.split(' ');
+    let offset = 0;
+    return words.map((word) => {
+      const start = offset;
+      offset += word.length;
+      return { word, start };
+    });
   }, [uppercaseText]);
 
   return (
-    <div ref={ref} className={`flex items-center justify-center flex-wrap p-4 ${className}`}>
-      {uppercaseText.split('').map((char, index) => {
-        if (char === ' ') {
-          return (
-            <div
-              key={`space-${index}`}
-              style={{ width: `${responsiveLetterSize * 0.36}px` }} // Dynamic space width
-            />
-          );
-        }
-
-        // Calculate letter index (excluding spaces)
-        const letterIndex = uppercaseText.slice(0, index).replace(/ /g, '').length;
-        const transform = transforms[letterIndex];
-        const totalLetters = uppercaseText.replace(/ /g, '').length;
-
-        return (
-          <ScrapbookLetter
-            key={`${char}-${index}`}
-            letter={char as SupportedLetter}
-            rotation={transform.rotation}
-            offsetY={transform.offsetY}
-            letterIndex={letterIndex}
-            zIndex={totalLetters - letterIndex}
-            scale={transform.scale}
-            size={responsiveLetterSize}
-            letterClassName={letterClassName}
-            isVisible={isVisible}
-          />
-        );
-      })}
+    // Words can wrap to new lines, but letters within a word never break
+    <div ref={ref} className={`flex items-center justify-center flex-wrap gap-y-1 p-4 ${className}`}>
+      {wordGroups.map(({ word, start }, wordIndex) => (
+        <React.Fragment key={`word-${wordIndex}`}>
+          {/* Space between words */}
+          {wordIndex > 0 && (
+            <div style={{ width: `${responsiveLetterSize * 0.36}px`, flexShrink: 0 }} />
+          )}
+          {/* Letters within a word are never allowed to break to a new line */}
+          <div className="flex items-center" style={{ flexShrink: 0 }}>
+            {word.split('').map((char, charIndex) => {
+              const currentLetterIdx = start + charIndex;
+              const transform = transforms[currentLetterIdx];
+              return (
+                <ScrapbookLetter
+                  key={`${char}-${wordIndex}-${charIndex}`}
+                  letter={char as SupportedLetter}
+                  rotation={transform.rotation}
+                  offsetY={transform.offsetY}
+                  letterIndex={currentLetterIdx}
+                  zIndex={totalLetters - currentLetterIdx}
+                  scale={transform.scale}
+                  size={responsiveLetterSize}
+                  letterClassName={letterClassName}
+                  isVisible={isVisible}
+                />
+              );
+            })}
+          </div>
+        </React.Fragment>
+      ))}
     </div>
   );
 };

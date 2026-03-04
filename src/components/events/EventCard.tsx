@@ -105,7 +105,7 @@ export function EventCard({ event, index }: EventCardProps) {
           {/* Title */}
           <h3
             className="font-dosis font-bold text-white text-2xl leading-tight group-hover:transition-colors duration-200"
-            style={{ color: 'white' }}
+            style={{ fontFamily: 'Dosis, sans-serif', color: 'white' }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLHeadingElement).style.color = accent.border)}
             onMouseLeave={(e) => ((e.currentTarget as HTMLHeadingElement).style.color = 'white')}
           >
@@ -113,7 +113,7 @@ export function EventCard({ event, index }: EventCardProps) {
           </h3>
 
           {/* Meta info */}
-          <div className="flex flex-wrap gap-3 gap-y-2 text-gray-400 text-sm font-montserrat">
+          <div className="flex flex-wrap gap-3 gap-y-2 text-gray-400 text-sm font-dosis">
             <span className="flex items-center gap-2 whitespace-nowrap">
               <CalendarIcon />
               {formatDate(event.date)}
@@ -129,7 +129,7 @@ export function EventCard({ event, index }: EventCardProps) {
           </div>
 
           {/* Description */}
-          <p className="font-montserrat text-gray-300 text-base leading-relaxed line-clamp-4 mt-auto pt-3 border-t border-white/5">
+          <p className="font-dosis font-light text-white text-sm sm:text-base md:text-base lg:text-lg leading-relaxed line-clamp-4 mt-auto pt-3 border-t border-white/5" style={{ fontFamily: 'Dosis, sans-serif' }}>
             {event.description}
           </p>
         </div>
