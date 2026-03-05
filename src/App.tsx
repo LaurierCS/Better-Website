@@ -12,7 +12,7 @@ function App() {
   useRandomScrollbarColor();
 
   return (
-    <div className="relative w-full bg-linear-to-b from-slate-800 to-slate-900">
+    <div className="relative w-full">
       <PatternBackground />
       <div className="relative z-10">
         <Header />

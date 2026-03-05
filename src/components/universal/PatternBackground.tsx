@@ -17,9 +17,17 @@ export const PatternBackground = () => {
 
   return (
     <div
-      className="fixed inset-0 w-full h-full pointer-events-none"
+      className="fixed pointer-events-none"
       style={{
-        background: `linear-gradient(135deg, #2C3844 0%, #4a5568 100%)`,
+        // Extend into iOS safe areas so the background covers behind the
+        // iOS 26 Safari bottom tab bar. viewport-fit=cover + inset-0 still
+        // leaves a gap at the bottom; paddding/negative bottom covers it.
+        top: 0,
+        left: 0,
+        right: 0,
+        // Push below the safe-area inset so the bg color bleeds under the tab bar
+        bottom: 'calc(-1 * env(safe-area-inset-bottom, 0px))',
+        background: `linear-gradient(135deg, #0e263d 0%, #0c2238 100%)`,
         zIndex: 0,
       }}
     >

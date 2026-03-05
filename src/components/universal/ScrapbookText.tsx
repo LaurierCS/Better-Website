@@ -68,9 +68,9 @@ const validateText = (text: string): void => {
  */
 const generateRandomTransforms = (count: number) => {
   return Array.from({ length: count }, () => ({
-    rotation: Math.random() * 16 - 8, // Random between -8 and 8 degrees
-    offsetY: Math.random() * 6 - 3, // Random between -3 and 3 pixels
-    scale: Math.random() * 0.1 + 0.95, // Random between 0.95 and 1.05
+    rotation: Math.random() * 6 - 3, // Random between -3 and 3 degrees
+    offsetY: Math.random() * 2 - 1, // Random between -1 and 1 pixels
+    scale: Math.random() * 0.04 + 0.98, // Random between 0.98 and 1.02
   }));
 };
 
@@ -87,6 +87,7 @@ interface ScrapbookLetterProps {
   size: number;
   letterClassName?: string;
   isVisible?: boolean; // Whether element is visible in viewport
+  skipAnimation?: boolean; // Skip entrance animation - element was already visible on mount
 }
 
 const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> = ({
@@ -99,9 +100,20 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> 
   letterClassName,
   letterIndex,
   isVisible = true,
+  skipAnimation = false,
 }) => {
   const assetPath = letterAssets[letter];
   const staggerDelay = letterIndex * 60; // 60ms stagger between letters
+
+  // Determine animation value:
+  //  • skipAnimation → already visible on mount, no animation
+  //  • isVisible      → scrolled into view, play the entrance animation
+  //  • otherwise      → hidden (waiting to scroll into view)
+  const animationStyle = (() => {
+    if (skipAnimation) return 'none';
+    if (isVisible) return `scrapbookLetterAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both`;
+    return 'none';
+  })();
 
   return (
     <div
@@ -115,7 +127,9 @@ const ScrapbookLetter: React.FC<ScrapbookLetterProps & { letterIndex: number }> 
     >
       <div
         style={{
-          animation: isVisible ? `scrapbookLetterAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${staggerDelay}ms both` : 'none',
+          animation: animationStyle,
+          // When skipping the animation render fully opaque immediately
+          opacity: skipAnimation ? 1 : undefined,
         }}
       >
         <img
@@ -147,7 +161,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   );
 
   // Observer for scroll-reveal animation
-  const { ref, isVisible } = useIntersectionObserver({
+  const { ref, isVisible, skipAnimation } = useIntersectionObserver({
     rootMargin: '0px',
     threshold: 0.05,
     once: true,
@@ -223,6 +237,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
                   size={responsiveLetterSize}
                   letterClassName={letterClassName}
                   isVisible={isVisible}
+                  skipAnimation={skipAnimation}
                 />
               );
             })}
