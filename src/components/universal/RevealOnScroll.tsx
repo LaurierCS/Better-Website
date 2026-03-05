@@ -66,30 +66,34 @@ interface RevealOnScrollProps {
 export const RevealOnScroll: React.FC<RevealOnScrollProps> = ({
   children,
   visibleClassName = '',
-  hiddenClassName = '',
   className = '',
   rootMargin = '0px',
   threshold = 0.1,
   once = true,
   as: Component = 'div',
 }) => {
-  const { ref, isVisible } = useIntersectionObserver({
+  const { ref, isVisible, skipAnimation } = useIntersectionObserver({
     rootMargin,
     threshold,
     once,
   });
 
-  const animationClass = isVisible ? visibleClassName : hiddenClassName;
-  const combinedClassName = `${className} ${animationClass}`.trim();
+  // When the element was already in view on mount (skipAnimation=true) we
+  // render it fully visible without any animation class so the user never
+  // sees a flash or an unwanted entrance animation.
+  const animationClass = isVisible && !skipAnimation ? visibleClassName : '';
 
-  // Pre-set the element to its animation start state before it enters view.
-  // This prevents the "show → flash invisible → animate in" bug on mobile,
-  // which happens because the CSS animation `from` keyframe (opacity:0) briefly
-  // overrides the element's natural opacity:1 when the class is first applied.
-  const preAnimationStyle =
-    !isVisible && visibleClassName
-      ? { opacity: 0 as const, transform: 'translateY(20px)' }
-      : undefined;
+  // Determine inline style:
+  //  • skipAnimation  → fully visible, no transform
+  //  • not yet visible → hidden at animation start position
+  //  • animating in   → let the CSS class handle it (no inline style needed)
+  const preAnimationStyle: React.CSSProperties | undefined = (() => {
+    if (skipAnimation) return { opacity: 1, transform: 'none' };
+    if (!isVisible && visibleClassName) return { opacity: 0, transform: 'translateY(20px)' };
+    return undefined;
+  })();
+
+  const combinedClassName = `${className} ${animationClass}`.trim();
 
   return (
     <Component ref={ref} className={combinedClassName} style={preAnimationStyle}>
