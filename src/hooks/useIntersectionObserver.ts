@@ -44,29 +44,32 @@ export function useIntersectionObserver(options: UseIntersectionObserverOptions 
 
     useEffect(() => {
         const currentRef = ref.current;
+        if (!currentRef) return;
 
-        // ── iOS 26 / Safari bottom-bar fix ──────────────────────────────────
-        // Safari on iOS 26 shows content behind the tab bar so elements that
-        // are "off-screen" in traditional terms are already visible to the user.
-        // If the element is inside the rendered viewport on mount, mark it as
-        // already visible so consumers can skip the entrance animation.
-        if (currentRef) {
-            const rect = currentRef.getBoundingClientRect();
-            const alreadyInView = rect.top < window.innerHeight && rect.bottom > 0;
-            if (alreadyInView) {
-                setIsVisible(true);
-                setSkipAnimation(true);
-                // When once=true we don't need to observe further – the element
-                // will stay visible and won't need to animate on a future scroll.
-                if (once) return;
-            }
-        }
-        // ────────────────────────────────────────────────────────────────────
+        let isInitial = true;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
+                // ── iOS 26 / Safari bottom-bar fix ──────────────────────────────────
+                // On the first observer callback, detect if element was already in view
+                // on mount. Safari iOS shows content behind the tab bar so elements that
+                // appear "off-screen" in traditional terms may already be visible.
+                if (isInitial) {
+                    isInitial = false;
+                    if (entry.isIntersecting) {
+                        // Element was in view on mount
+                        setIsVisible(true);
+                        setSkipAnimation(true);
+                        if (once) {
+                            observer.unobserve(currentRef);
+                        }
+                        return;
+                    }
+                }
+                // ────────────────────────────────────────────────────────────────────
+
+                // Handle scroll-triggered visibility
                 if (entry.isIntersecting) {
-                    // Scroll-triggered visibility – animation should play normally.
                     setSkipAnimation(false);
                     setIsVisible(true);
                     // Disconnect after first intersection if 'once' is true
@@ -84,14 +87,10 @@ export function useIntersectionObserver(options: UseIntersectionObserverOptions 
             }
         );
 
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
+        observer.observe(currentRef);
 
         return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
-            }
+            observer.unobserve(currentRef);
         };
     }, [rootMargin, threshold, once]);
 
