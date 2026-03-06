@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCache } from '../hooks/useCache';
 import { supabase } from '../services/supabase';
 import { TeamCard } from '../components/team/TeamCard';
 import { ScrapbookText } from '../components/universal/ScrapbookText';
@@ -20,31 +20,18 @@ interface TeamMember {
 }
 
 export function TeamSection() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  const fetchTeam = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
+  const [teamMembers, loading, error] = useCache<TeamMember[]>(
+    'team_cache',
+    async () => {
       const { data, error: sbError } = await supabase
         .from('team')
         .select('id, name, role, picture_url, github_url, linkedin_url')
         .eq('is_public', true);
 
       if (sbError) throw sbError;
-      setTeamMembers(data as TeamMember[]);
-    } catch (err) {
-      setError(err instanceof Error ? err : new Error(String(err)));
-    } finally {
-      setLoading(false);
+      return (data as TeamMember[]) ?? [];
     }
-  }, []);
-
-  useEffect(() => {
-    fetchTeam();
-  }, [fetchTeam]);
+  );
 
   /**
    * Groups team members by their department based on role mapping
@@ -62,7 +49,8 @@ export function TeamSection() {
       Engineering: [],
     };
 
-    teamMembers.forEach((member) => {
+    const members = teamMembers ?? [];
+    members.forEach((member) => {
       const dept = getDepartmentFromRole(member.role);
       grouped[dept as Department].push(member);
     });

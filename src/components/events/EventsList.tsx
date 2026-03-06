@@ -4,8 +4,9 @@
  * Handles loading, error, and empty states gracefully.
  */
 
-import { useEffect, useState, useCallback } from 'react';
+import { useState } from 'react';
 import { supabase } from '../../services/supabase';
+import { useCache } from '../../hooks/useCache';
 import { EventCard, type Event } from './EventCard';
 import RevealOnScroll from '../universal/RevealOnScroll';
 import ScrapbookText from '../universal/ScrapbookText';
@@ -14,42 +15,30 @@ import '../../components/styles/fadeSlideUpAnimation.css';
 type SortOrder = 'upcoming' | 'past';
 
 export function EventsList() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
   const [filter, setFilter] = useState<SortOrder>('upcoming');
 
-  const fetchEvents = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
+  const [events, loading, error] = useCache<Event[]>(
+    'events_cache',
+    async () => {
       const { data, error: sbError } = await supabase
         .from('events')
         .select('id, title, description, date, time, location, picture_url')
         .order('date', { ascending: true });
 
       if (sbError) throw sbError;
-      setEvents((data as Event[]) ?? []);
-    } catch (err) {
-      setError(err instanceof Error ? err : new Error(String(err)));
-    } finally {
-      setLoading(false);
+      return (data as Event[]) ?? [];
     }
-  }, []);
-
-  useEffect(() => {
-    fetchEvents();
-  }, [fetchEvents]);
+  );
 
   const today = new Date().toISOString().split('T')[0];
+  const eventsArray = events ?? [];
 
-  const filteredEvents = events.filter((e) =>
+  const filteredEvents = eventsArray.filter((e) =>
     filter === 'upcoming' ? e.date >= today : e.date < today
   );
 
-  const upcomingCount = events.filter((e) => e.date >= today).length;
-  const pastCount     = events.filter((e) => e.date < today).length;
+  const upcomingCount = eventsArray.filter((e) => e.date >= today).length;
+  const pastCount     = eventsArray.filter((e) => e.date < today).length;
 
   return (
     <section id="events" className="w-full flex flex-col items-center justify-center px-4 pt-48 pb-16">
