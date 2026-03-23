@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SocialLinks from './SocialLinks';
 
 export default function Header() {
@@ -105,6 +106,7 @@ export default function Header() {
 
 // Individual nav link with random accent color on hover
 function NavLink({ href, children, onClick }: { href: string; children: string; onClick?: () => void }) {
+  const navigate = useNavigate();
   const [currentColor, setCurrentColor] = useState('');
   const [lastColor, setLastColor] = useState('');
 
@@ -137,6 +139,9 @@ function NavLink({ href, children, onClick }: { href: string; children: string; 
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    } else if (href.startsWith('/')) {
+      e.preventDefault();
+      navigate(href);
     }
     onClick?.();
   };
