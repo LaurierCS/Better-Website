@@ -21,7 +21,7 @@
     right: -14%;
     top: 24%;
     background: radial-gradient(circle at center, rgba(38, 138, 249, 0.48), rgba(38, 138, 249, 0));
-    animation-delay: 1.8s;
+    animation-delay: 0.6s;
 }
 
 .hack-hero-grid {
@@ -35,6 +35,7 @@
 
 .hack-cta {
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+    transition-duration: 0.4s;
 }
 
 .hack-cta:hover {
@@ -46,6 +47,47 @@
     opacity: 0;
     transform: translateY(8px);
     animation: timelineAppear 0.55s ease-out forwards;
+}
+
+.hack-accordion {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.hack-hover-card {
+    transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
+}
+
+.hack-hover-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 20px 38px rgba(0, 0, 0, 0.33);
+}
+
+.hack-panel-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.32s ease;
+}
+
+.hack-panel-grid-open {
+    grid-template-rows: 1fr;
+}
+
+.hack-panel-content {
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+}
+
+.hack-panel-grid-open .hack-panel-content {
+    opacity: 1;
+}
+
+#challenge-options,
+#schedule,
+#prizes,
+#submission-guide {
+    scroll-margin-top: 6.5rem;
 }
 
 @keyframes timelineAppear {
@@ -82,8 +124,21 @@
     }
 
     .hack-cta,
-    .hack-cta:hover {
+    .hack-cta:hover,
+    .hack-hover-card,
+    .hack-hover-card:hover,
+    .hack-panel-grid,
+    .hack-panel-grid-open,
+    .hack-panel-content,
+    .hack-panel-grid-open .hack-panel-content {
         transition: none !important;
         transform: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hack-glow-orb {
+        opacity: 0.32;
+        filter: blur(48px);
     }
 }

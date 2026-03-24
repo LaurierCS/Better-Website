@@ -3,6 +3,11 @@ export interface HighlightItem {
     description: string;
 }
 
+export interface ChallengeOption {
+    title: string;
+    description: string;
+}
+
 export interface TimelineDay {
     day: string;
     dateLabel: string;
@@ -24,9 +29,38 @@ export interface FAQItem {
     answer: string;
 }
 
+export interface SubmissionRequirement {
+    title: string;
+    required: boolean;
+    points: string[];
+}
+
+export interface LinkConfig {
+    label: string;
+    href: string;
+    enabled: boolean;
+    disabledLabel?: string;
+    helperText?: string;
+}
+
 export const HACKATHON_LINKS = {
-    signup: 'https://forms.gle/2wMjeRrbbq3eptpc9',
-    devpost: 'https://temp.com/devpost',
+    signup: {
+        label: 'Register Now',
+        href: 'https://forms.gle/dvNWGKueHD5TemUe6',
+        enabled: true,
+    },
+    devpost: {
+        label: 'View Devpost',
+        href: '#',
+        enabled: false,
+        disabledLabel: 'Devpost Coming Soon',
+        helperText: 'Devpost link will be posted as soon as it is live.',
+    },
+    discord: {
+        label: 'Join Discord',
+        href: 'https://discord.gg/lauriercs',
+        enabled: true,
+    },
 } as const;
 
 // Countdown target: Friday, March 27, 2026 at 7:30 PM in Toronto (EDT, UTC-4)
@@ -34,32 +68,49 @@ export const HACKATHON_COUNTDOWN_TARGET = '2026-03-27T19:30:00-04:00';
 
 export const HACKATHON_EVENT = {
     title: 'Hack to the Future',
-    subtitle: 'Build the future of job mentorship in 48 hours',
+    subtitle: 'A 48-hour open-ended hackathon where you can build anything',
     host: 'Laurier Computing Society',
     duration: '48-Hour Hackathon',
     dateRange: 'March 27-29, 2026',
     challengeTitle: 'The Challenge',
     challengeDescription:
-        'Design and build a system that connects students entering the job market with mentors or past interns who can offer insights, advice, or resources related to their roles.',
+        'Build any app, tool, service, or experiment you are excited about. If you want direction, we have one suggested challenge to spark ideas.',
 } as const;
+
+export const HACKATHON_CHALLENGE_OPTIONS: ChallengeOption[] = [
+    {
+        title: 'Option 1: Build Anything',
+        description:
+            'Run with your own idea and your own stack. Build whatever feels bold, useful, fun, or meaningful to you.',
+    },
+    {
+        title: 'Option 2: Suggested Challenge',
+        description:
+            'Develop a system that connects students entering the job market with mentors or past interns who can offer insights, advice, or resources related to their roles.',
+    },
+];
 
 export const HACKATHON_HIGHLIGHTS: HighlightItem[] = [
     {
         title: 'Direct Engineering Support',
         description:
-            '3 hours of dedicated office hours via Discord on Saturday for debugging, architecture, and product direction.',
+            'Dedicated Discord office hours on Saturday for debugging, architecture, and product direction.',
     },
     {
         title: 'Industry and Alumni Judges',
         description: 'Get feedback from professionals and alumni currently working in tech.',
     },
     {
-        title: 'Startup-Level Potential',
-        description: 'Build an idea that could become a real venture solving a real student pain point.',
+        title: 'Up to $700 in Prizes',
+        description: 'Top 3 teams win placement prizes, plus special category awards.',
+    },
+    {
+        title: 'Real-World Impact',
+        description: 'Build something that could evolve into a startup or long-term product.',
     },
     {
         title: 'Community and Momentum',
-        description: 'Network with students and mentors, then present your solution to a live audience.',
+        description: 'Network with students, mentors, and judges while building under pressure.',
     },
 ];
 
@@ -69,19 +120,15 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
         dateLabel: 'March 27',
         items: [
             {
-                time: '6:30 - 7:00 PM',
+                time: '6:30 - 7:15 PM',
                 title: 'Check-in and Registration',
-                details: 'QR sign-in, Discord onboarding, and snacks.',
+                details: 'QR code sign-in, Discord onboarding, and Redbull plus snacks.',
             },
             {
-                time: '7:15 - 8:00 PM',
+                time: '7:30 - 8:15 PM',
                 title: 'Opening Ceremony',
-                details: 'Challenge deep dive, judging criteria, and submission walkthrough.',
-            },
-            {
-                time: '8:00 PM (Optional)',
-                title: 'What Is a Hackathon? Session',
-                details: 'Guest speaker, Q&A, and strategy tips for new participants.',
+                details:
+                    'Welcome, challenge explanation, judging criteria, submission requirements, timeline, and what to expect.',
             },
         ],
     },
@@ -95,9 +142,9 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
                 details: 'Hack from the LCS room or remotely with any stack.',
             },
             {
-                time: '3 Hours (Discord)',
+                time: 'Office Hours (Discord)',
                 title: 'Engineering Office Hours',
-                details: 'Live support from the engineering team. Exact times posted on Discord.',
+                details: 'Dedicated support from the engineering team. Check Discord for exact times.',
             },
         ],
     },
@@ -111,14 +158,14 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
                 details: 'Devpost closes at 1:30 PM sharp.',
             },
             {
-                time: '1:30 - 4:30 PM',
+                time: '2:00 - 4:30 PM',
                 title: 'Judging Period',
-                details: 'Judges review projects and team headshots are captured.',
+                details: 'Team presentations (5 minutes each) and live Q&A with judges.',
             },
             {
-                time: '4:30 - 7:30 PM',
+                time: '5:00 - 7:00 PM',
                 title: 'Closing Ceremony and Awards',
-                details: 'Presentations, live Q&A, winners, networking, and celebration.',
+                details: 'Top 3 presentations, winner announcements, networking, and celebration.',
             },
         ],
     },
@@ -128,7 +175,7 @@ export const HACKATHON_PRIZES: PrizeItem[] = [
     {
         placement: '1st Place',
         amount: '$300 CAD',
-        description: 'Best overall solution to the mentorship challenge.',
+        description: 'Best overall project based on execution, creativity, and impact.',
     },
     {
         placement: '2nd Place',
@@ -162,16 +209,85 @@ export const HACKATHON_CATEGORY_AWARDS: PrizeItem[] = [
 
 export const HACKATHON_TOTAL_PRIZE_POOL = '$700 CAD';
 
+export const HACKATHON_BUILD_EXAMPLES: string[] = [
+    'A web or mobile app',
+    'A tool or utility',
+    'An AI or ML project',
+    'A creative solution to any problem',
+    'Anything else you are excited about',
+];
+
+export const HACKATHON_SUBMISSIONS: SubmissionRequirement[] = [
+    {
+        title: 'GitHub Repository',
+        required: true,
+        points: [
+            'Include a complete link to your project code.',
+            'README should explain what your project does, how to run it, setup steps, and team contributions.',
+            'All source code must be accessible to judges.',
+        ],
+    },
+    {
+        title: 'Live Demo Presentation',
+        required: true,
+        points: [
+            'Teams present in person to judges in a 1-on-1 format.',
+            'Demonstrate your system live and walk through key features and decisions.',
+            'Top 3 teams present again in a final round to judges and audience.',
+        ],
+    },
+    {
+        title: 'Demo Video',
+        required: false,
+        points: [
+            'Optional, maximum 5 minutes, uploaded to YouTube (unlisted is fine).',
+            'Show your system working and highlight key features.',
+        ],
+    },
+    {
+        title: 'Deployed Project Link',
+        required: false,
+        points: [
+            'Optional live link so judges can interact with your solution directly.',
+        ],
+    },
+    {
+        title: 'Project Description',
+        required: false,
+        points: [
+            'Optional write-up covering problem statement, approach, stack, challenges, and future plans.',
+        ],
+    },
+];
+
+export const HACKATHON_TECHNICAL_DETAILS: string[] = [
+    'Team size: 1-4 participants. You cannot be on multiple teams.',
+    'Tech stack: Any technology is welcome.',
+    'Solo participants are allowed.',
+    'Original work window: Friday 8:00 PM to Sunday 1:30 PM.',
+    'External libraries, frameworks, APIs, and tools are allowed with transparent disclosure.',
+];
+
+export const HACKATHON_DEVPOST_CHECKLIST: string[] = [
+    'Project Title',
+    'Tagline (1-2 sentence summary)',
+    'Project Description (optional)',
+    'GitHub Repository Link (required)',
+    'Demo Video Link (optional)',
+    'Deployed Project Link (optional)',
+    'Team Members (max 4)',
+];
+
 export const HACKATHON_FAQS: FAQItem[] = [
     {
         question: 'Who can participate?',
         answer:
-            'University students are welcome. Build solo or with a team and pick any technology stack that helps you ship.',
+            'University students are welcome. Build solo or with a team, and use any technology stack that helps you ship.',
     },
     {
-        question: 'Do I need prior hackathon experience?',
+        question: 'Is this hackathon open-ended?',
         answer:
-            'No. There is an optional onboarding session plus engineering office hours to help you get unstuck quickly.',
+            'Yes. You can build anything. We include one suggested challenge only for teams that want extra direction.',
     },
     {
         question: 'Can I work remotely?',
@@ -179,8 +295,13 @@ export const HACKATHON_FAQS: FAQItem[] = [
             'Yes. You can build in the LCS room or from home. Discord is the central place for announcements and support.',
     },
     {
-        question: 'What makes a strong submission?',
+        question: 'What is mandatory for submission?',
         answer:
-            'Focus on solving the mentorship gap with a clear user flow, practical implementation, and a compelling final demo.',
+            'A GitHub repository and a live demo presentation are mandatory. Optional extras include a demo video, deployment link, and project description.',
+    },
+    {
+        question: 'Where do I get help during the event?',
+        answer:
+            'Join the LCS Discord for announcements and support. Office hours are held on Saturday for live engineering help.',
     },
 ];
