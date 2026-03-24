@@ -19,7 +19,7 @@ export function ChallengeHighlightsSection({
     <section id="challenge-options" className="max-w-6xl mx-auto mt-10 md:mt-14">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
         {/* LEFT CARD: Challenge Options */}
-        <div className="rounded-3xl border border-white/15 bg-[linear-gradient(140deg,rgba(255,255,255,0.08),rgba(15,30,54,0.55))] backdrop-blur-md p-6 md:p-8 h-full">
+        <div className="hack-card-stagger rounded-3xl border border-white/15 bg-[linear-gradient(140deg,rgba(255,255,255,0.08),rgba(15,30,54,0.55))] backdrop-blur-md p-6 md:p-8 h-full">
           <div className="mb-6">
             <p className="text-xs uppercase tracking-[0.2em] text-white/75 mb-2">The Challenge</p>
             <h2 className="text-white text-3xl md:text-4xl font-black leading-tight" style={{ fontFamily: 'var(--font-dosis)' }}>
@@ -52,7 +52,7 @@ export function ChallengeHighlightsSection({
         </div>
 
         {/* RIGHT CARD: Highlights */}
-        <div className="rounded-3xl border border-white/15 bg-[linear-gradient(140deg,rgba(255,255,255,0.08),rgba(15,30,54,0.55))] backdrop-blur-md p-6 md:p-8 h-full">
+        <div className="hack-card-stagger rounded-3xl border border-white/15 bg-[linear-gradient(140deg,rgba(255,255,255,0.08),rgba(15,30,54,0.55))] backdrop-blur-md p-6 md:p-8 h-full">
           <div className="mb-6">
             <h2 className="text-white text-3xl md:text-4xl font-black" style={{ fontFamily: 'var(--font-dosis)' }}>
               Why Participate

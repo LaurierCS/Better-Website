@@ -36,7 +36,7 @@ export function HeroSection({
 }: HeroSectionProps) {
   return (
     <section className="max-w-6xl mx-auto pt-6 md:pt-10">
-      <div className="rounded-3xl border border-white/20 bg-black/20 backdrop-blur-xl px-4 md:px-8 py-4 mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div className="fadeSlideUpFast rounded-3xl border border-white/20 bg-black/20 backdrop-blur-xl px-4 md:px-8 py-4 mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div className="flex items-center gap-3">
           <img
             src="/assets/logos/LCS_Icon_White_SVG.svg"
@@ -65,7 +65,7 @@ export function HeroSection({
         </div>
       </div>
 
-      <div className="rounded-4xl border border-white/15 bg-linear-to-br from-[#133151]/90 via-[#0E2A46]/80 to-[#0b1f37]/80 px-4 sm:px-6 md:px-10 py-8 md:py-12 shadow-[0_30px_120px_rgba(3,8,18,0.55)] relative overflow-hidden">
+      <div className="fadeSlideUpFromBottom rounded-4xl border border-white/15 bg-linear-to-br from-[#133151]/90 via-[#0E2A46]/80 to-[#0b1f37]/80 px-4 sm:px-6 md:px-10 py-8 md:py-12 shadow-[0_30px_120px_rgba(3,8,18,0.55)] relative overflow-hidden">
         <div className="absolute inset-0 hack-hero-grid" />
         <div className="relative z-10 grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
           <div>
