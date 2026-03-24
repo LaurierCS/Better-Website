@@ -86,7 +86,7 @@ export const HACKATHON_CHALLENGE_OPTIONS: ChallengeOption[] = [
     {
         title: 'Option 2: Suggested Challenge',
         description:
-            'Develop a system that connects students entering the job market with mentors or past interns who can offer insights, advice, or resources related to their roles.',
+            'A surprise challenge will be revealed at the opening ceremony to spark ideas and provide direction if you want it.',
     },
 ];
 
