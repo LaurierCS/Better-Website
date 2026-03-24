@@ -142,9 +142,19 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
                 details: 'Hack from the LCS room or remotely with any stack.',
             },
             {
-                time: 'Office Hours (Discord)',
-                title: 'Engineering Office Hours',
-                details: 'Dedicated support from the engineering team. Check Discord for exact times.',
+                time: '1:00 - 2:00 PM',
+                title: 'Rezzy Workshop',
+                details: 'Learn to build resumes that get past ATS and land interviews. Rezzy is an AI resume builder for engineers with job-specific tailoring. Visit https://www.rezzy.dev/',
+            },
+            {
+                time: '2:00 - 4:00 PM',
+                title: 'In-Person Office Hours',
+                details: 'Dedicated support from the engineering team in the LCS room.',
+            },
+            {
+                time: 'All Day',
+                title: 'Discord Office Hours',
+                details: 'Virtual support from the engineering team on Discord.',
             },
         ],
     },
