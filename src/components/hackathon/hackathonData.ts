@@ -15,6 +15,7 @@ export interface TimelineDay {
         time: string;
         title: string;
         details?: string;
+        signupLink?: string;
     }>;
 }
 
@@ -128,7 +129,7 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
                 time: '7:30 - 8:15 PM',
                 title: 'Opening Ceremony',
                 details:
-                    'Welcome, challenge explanation, judging criteria, submission requirements, timeline, and what to expect.',
+                    'Welcome, challenge explanation, judging criteria, submission requirements, timeline, and what to expect. Location: LH1011',
             },
         ],
     },
@@ -139,17 +140,18 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
             {
                 time: 'All Day',
                 title: 'Build and Iterate',
-                details: 'Hack from the LCS room or remotely with any stack.',
+                details: 'Hack from the LCS room (N2085) or remotely with any stack.',
             },
             {
                 time: '1:00 - 2:00 PM',
                 title: 'Rezzy Workshop',
-                details: 'Learn to build resumes that get past ATS and land interviews. Rezzy is an AI resume builder for engineers with job-specific tailoring. Visit https://www.rezzy.dev/',
+                details: 'Hands-on walkthrough of Rezzy\'s API for programmatic resume generation and tailoring. Second half features live resume feedback. Free Rezzy Pro for all attendees. Snacks provided.',
+                signupLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdjHV7d7qc-Gjz5DQWwvRxfll7SP1A5uCs_HFNI8Cis87pWFQ/viewform',
             },
             {
                 time: '2:00 - 4:00 PM',
                 title: 'In-Person Office Hours',
-                details: 'Dedicated support from the engineering team in the LCS room.',
+                details: 'Dedicated support from the engineering team in the LCS room (N2085).',
             },
             {
                 time: 'All Day',
@@ -175,7 +177,7 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
             {
                 time: '5:00 - 7:00 PM',
                 title: 'Closing Ceremony and Awards',
-                details: 'Top 3 presentations, winner announcements, networking, and celebration.',
+                details: 'Top 3 presentations, winner announcements, networking, and celebration. Location: LH1011',
             },
         ],
     },
@@ -302,7 +304,7 @@ export const HACKATHON_FAQS: FAQItem[] = [
     {
         question: 'Can I work remotely?',
         answer:
-            'Yes. You can build in the LCS room or from home. Discord is the central place for announcements and support.',
+            'Yes. You can build in the LCS room (N2085) or from home. Discord is the central place for announcements and support.',
     },
     {
         question: 'What is mandatory for submission?',

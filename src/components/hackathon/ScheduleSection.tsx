@@ -55,6 +55,19 @@ export function ScheduleSection({ timeline, totalScheduleItems }: ScheduleSectio
                         {item.details}
                       </p>
                     )}
+                    {item.signupLink && (
+                      <div className="mt-3">
+                        <a
+                          href={item.signupLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-colors"
+                          style={{ fontFamily: 'var(--font-montserrat)' }}
+                        >
+                          Sign Up
+                        </a>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
