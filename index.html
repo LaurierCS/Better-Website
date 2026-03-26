@@ -14,17 +14,26 @@
   <meta name="author" content="Laurier Computing Society" />
 
   <!-- Open Graph Tags -->
-  <meta property="og:title" content="Laurier Computing Society - Tech Community & Events" />
+  <meta property="og:title" content="Laurier Computing Society" />
   <meta property="og:description"
     content="Join our vibrant tech community at Wilfrid Laurier University. Attend events, connect with peers, and advance your computing skills." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/favicon/LCS_Icon_Black_SVG.svg" />
+  <meta property="og:url" content="https://lauriercs.ca" />
+  <meta property="og:image" content="https://lauriercs.ca/favicon/web-app-manifest-512x512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:type" content="image/png" />
 
   <!-- Twitter Card Tags -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Laurier Computing Society" />
   <meta name="twitter:description"
     content="A vibrant tech community and student organization at Wilfrid Laurier University." />
+  <meta name="twitter:image" content="https://lauriercs.ca/favicon/web-app-manifest-512x512.png" />
+  <meta name="twitter:image:alt" content="Laurier Computing Society logo" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://lauriercs.ca" />
 
   <!-- Web App Manifest -->
   <link rel="manifest" href="/favicon/site.webmanifest" />
@@ -71,6 +80,37 @@
 
     // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+  </script>
+
+  <!-- JSON-LD Schema Markup for Organization -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Laurier Computing Society",
+      "url": "https://lauriercs.ca",
+      "description": "A vibrant tech community and student organization at Wilfrid Laurier University dedicated to computer science and technology enthusiasts.",
+      "logo": "https://lauriercs.ca/favicon/web-app-manifest-512x512.png",
+      "image": "https://lauriercs.ca/favicon/web-app-manifest-512x512.png",
+      "sameAs": [
+        "https://linkedin.com",
+        "https://twitter.com",
+        "https://discord.com"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Student Organization",
+        "url": "https://lauriercs.ca"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Waterloo",
+        "addressRegion": "ON",
+        "postalCode": "N2L 3C5",
+        "addressCountry": "CA",
+        "streetAddress": "Wilfrid Laurier University"
+      }
+    }
   </script>
 </head>
 
