@@ -86,18 +86,17 @@ export function HeroSection({
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3 sm:gap-4">
-              <CTAButton link={links.signup} isPrimary={true} />
+              <CTAButton link={links.devpost} isPrimary={true} />
               <CTAButton link={links.discord} />
-              <CTAButton link={links.devpost} />
             </div>
           </div>
 
           <div className="rounded-3xl border border-white/20 bg-black/25 backdrop-blur-md p-5 md:p-7">
-            <p className="text-white uppercase tracking-[0.2em] text-xs md:text-sm">Countdown to Kickoff</p>
+            <p className="text-white uppercase tracking-[0.2em] text-xs md:text-sm">Time Until Submissions Close</p>
 
             {countdown.isStarted ? (
               <p className="text-(--color-accent-yellow) text-3xl md:text-4xl font-extrabold mt-4 leading-tight" style={{ fontFamily: 'var(--font-dosis)' }}>
-                The Hackathon Is Live
+                Submissions Are Closed
               </p>
             ) : (
               <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
@@ -109,7 +108,7 @@ export function HeroSection({
             )}
 
             <p className="text-white/80 text-xs sm:text-sm mt-4" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Friday, March 27 at 7:30 PM (ET)
+              Sunday, March 29 at 1:30 PM (ET)
             </p>
           </div>
         </div>

@@ -47,15 +47,14 @@ export interface LinkConfig {
 export const HACKATHON_LINKS = {
     signup: {
         label: 'Register Now',
-        href: 'https://forms.gle/dvNWGKueHD5TemUe6',
-        enabled: true,
+        href: '',
+        enabled: false,
+        disabledLabel: 'Registrations Closed',
     },
     devpost: {
         label: 'View Devpost',
-        href: '#',
-        enabled: false,
-        disabledLabel: 'Devpost Coming Soon',
-        helperText: 'Devpost link will be posted as soon as it is live.',
+        href: 'https://hack-to-the-future-wlu.devpost.com/?_gl=1*1s0nwa7*_gcl_au*NDExNDk1MjAzLjE3NzM2ODAwMzM.*_ga*NTM4MzM1NjcwLjE3NzM2ODAwMzM.*_ga_0YHJK3Y10M*czE3NzQ2NTQzNzYkbzIzJGcxJHQxNzc0NjU0MzkyJGo0NCRsMCRoMA..',
+        enabled: true,
     },
     discord: {
         label: 'Join Discord',
@@ -64,8 +63,8 @@ export const HACKATHON_LINKS = {
     },
 } as const;
 
-// Countdown target: Friday, March 27, 2026 at 7:30 PM in Toronto (EDT, UTC-4)
-export const HACKATHON_COUNTDOWN_TARGET = '2026-03-27T19:30:00-04:00';
+// Countdown target: Sunday, March 29, 2026 at 1:30 PM in Toronto (EDT, UTC-4)
+export const HACKATHON_COUNTDOWN_TARGET = '2026-03-29T13:30:00-04:00';
 
 export const HACKATHON_EVENT = {
     title: 'Hack to the Future',
@@ -87,7 +86,7 @@ export const HACKATHON_CHALLENGE_OPTIONS: ChallengeOption[] = [
     {
         title: 'Option 2: Suggested Challenge',
         description:
-            'A surprise challenge will be revealed at the opening ceremony to spark ideas and provide direction if you want it.',
+            'Create an application or resource that helps students learn to track, budget, and understand their personal finances during their time at university.',
     },
 ];
 

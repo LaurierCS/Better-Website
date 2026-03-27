@@ -172,8 +172,3 @@
         filter: blur(48px);
     }
 }
-
-/* Hide The Challenge options card temporarily */
-#challenge-options>.grid>div:first-child {
-    display: none;
-}
