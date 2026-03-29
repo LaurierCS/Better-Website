@@ -261,7 +261,7 @@ export const HACKATHON_PRIZES: PrizeItem[] = [
         placement: '2nd Place',
         amount: '$150 CAD',
         description: 'Strong technical execution and clear user value.',
-        winnerProject: 'havenNow',
+        winnerProject: 'HavenNow',
         devpostUrl: 'https://hack-to-the-future-wlu.devpost.com/submissions/983144-havennow',
     },
     {
