@@ -8,6 +8,16 @@ export interface ChallengeOption {
     description: string;
 }
 
+export interface PresentationItem {
+    timeSlot: string;
+    projectName: string;
+}
+
+export interface PresentationRoom {
+    roomNumber: string;
+    presentations: PresentationItem[];
+}
+
 export interface TimelineDay {
     day: string;
     dateLabel: string;
@@ -114,6 +124,61 @@ export const HACKATHON_HIGHLIGHTS: HighlightItem[] = [
     },
 ];
 
+export const HACKATHON_PRESENTATIONS: PresentationRoom[] = [
+    {
+        roomNumber: 'N2085',
+        presentations: [
+            { timeSlot: '2:00-2:10', projectName: 'milo' },
+            { timeSlot: '2:10-2:20', projectName: 'MitraApp' },
+            { timeSlot: '2:20-2:30', projectName: 'PitchReady' },
+            { timeSlot: '2:30-2:40', projectName: 'ClimatePro' },
+            { timeSlot: '2:40-2:50', projectName: 'Any%' },
+            { timeSlot: '2:50-3:00', projectName: 'UniVerse' },
+            { timeSlot: '3:00-3:10', projectName: 'FinIt' },
+            { timeSlot: '3:10-3:20', projectName: 'UniWallet' },
+            { timeSlot: '3:20-3:30', projectName: 'FocusFlow' },
+            { timeSlot: '3:30-3:40', projectName: 'GoldenTalks' },
+            { timeSlot: '3:40-3:50', projectName: 'HomeRoom' },
+            { timeSlot: '3:50-4:00', projectName: 'OpenDoors' },
+            { timeSlot: '4:00-4:10', projectName: 'Openspot' },
+            { timeSlot: '4:10-4:20', projectName: 'Optima' },
+            { timeSlot: '4:20-4:30', projectName: 'Archie' },
+            { timeSlot: '4:40-4:50', projectName: 'DriveWise Pro' },
+            { timeSlot: '4:50-5:00', projectName: 'Fridge Foodie' },
+            { timeSlot: '5:00-5:10', projectName: 'FridgeChef' },
+            { timeSlot: '5:10-5:20', projectName: 'Astro' },
+            { timeSlot: '5:20-5:30', projectName: 'FillthatCrib' },
+            { timeSlot: '5:30-5:40', projectName: 'FinCopilot' },
+        ],
+    },
+    {
+        roomNumber: 'LH1011',
+        presentations: [
+            { timeSlot: '2:00-2:10', projectName: 'Budget Hawk' },
+            { timeSlot: '2:10-2:20', projectName: 'QuantPilot' },
+            { timeSlot: '2:20-2:30', projectName: 'KW-Network' },
+            { timeSlot: '2:30-2:40', projectName: 'Studently' },
+            { timeSlot: '2:40-2:50', projectName: 'StudHub' },
+            { timeSlot: '2:50-3:00', projectName: 'StudyBuddy' },
+            { timeSlot: '3:00-3:10', projectName: 'StudySync' },
+            { timeSlot: '3:10-3:20', projectName: 'CityAnalysis' },
+            { timeSlot: '3:20-3:30', projectName: 'campusmind' },
+            { timeSlot: '3:30-3:40', projectName: 'HabitMaster Pro' },
+            { timeSlot: '3:40-3:50', projectName: 'HavenNow' },
+            { timeSlot: '3:50-4:00', projectName: 'Maple Rader' },
+            { timeSlot: '4:00-4:10', projectName: 'SafeRoute' },
+            { timeSlot: '4:10-4:20', projectName: 'DeadVault' },
+            { timeSlot: '4:20-4:30', projectName: 'DeepDrive' },
+            { timeSlot: '4:40-4:50', projectName: 'Genetiq' },
+            { timeSlot: '4:50-5:00', projectName: 'NexusPoint' },
+            { timeSlot: '5:00-5:10', projectName: 'Recall' },
+            { timeSlot: '5:10-5:20', projectName: 'rezapp' },
+            { timeSlot: '5:20-5:30', projectName: 'TermLease' },
+            { timeSlot: '5:30-5:40', projectName: 'ShowUp.ai' },
+        ],
+    },
+];
+
 export const HACKATHON_TIMELINE: TimelineDay[] = [
     {
         day: 'Friday',
@@ -169,12 +234,12 @@ export const HACKATHON_TIMELINE: TimelineDay[] = [
                 details: 'Devpost closes at 1:30 PM sharp.',
             },
             {
-                time: '2:00 - 4:30 PM',
-                title: 'Judging Period',
-                details: 'Team presentations (5 minutes each) and live Q&A with judges.',
+                time: '2:00 - 6:00 PM',
+                title: 'Presentations',
+                details: 'Team presentations from rooms N2085 and LH1011.',
             },
             {
-                time: '5:00 - 7:00 PM',
+                time: '6:30 PM',
                 title: 'Closing Ceremony and Awards',
                 details: 'Top 3 presentations, winner announcements, networking, and celebration. Location: LH1011',
             },

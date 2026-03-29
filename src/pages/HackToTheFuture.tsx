@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   HACKATHON_CATEGORY_AWARDS,
-  HACKATHON_CHALLENGE_OPTIONS,
   HACKATHON_COUNTDOWN_TARGET,
   HACKATHON_DEVPOST_CHECKLIST,
   HACKATHON_EVENT,
   HACKATHON_FAQS,
-  HACKATHON_HIGHLIGHTS,
   HACKATHON_LINKS,
+  HACKATHON_PRESENTATIONS,
   HACKATHON_PRIZES,
   HACKATHON_SUBMISSIONS,
   HACKATHON_TECHNICAL_DETAILS,
@@ -17,6 +16,7 @@ import {
 import { ChallengeHighlightsSection } from '../components/hackathon/ChallengeHighlightsSection';
 import { FinalCtaSection } from '../components/hackathon/FinalCtaSection';
 import { HeroSection } from '../components/hackathon/HeroSection';
+import { PresentationsSection } from '../components/hackathon/PresentationsSection';
 import { PrizesIdeasSection } from '../components/hackathon/PrizesIdeasSection';
 import { ScheduleSection } from '../components/hackathon/ScheduleSection';
 import { SubmissionsFaqSection } from '../components/hackathon/SubmissionsFaqSection';
@@ -98,11 +98,8 @@ export default function HackToTheFuturePage() {
         </RevealOnScroll>
 
         <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="20px" once={true}>
-          <ChallengeHighlightsSection
-            title="Open-ended by default. Suggested challenge if you want direction."
-            description={HACKATHON_EVENT.challengeDescription}
-            challengeOptions={HACKATHON_CHALLENGE_OPTIONS}
-            highlights={HACKATHON_HIGHLIGHTS}
+          <PresentationsSection
+            presentations={HACKATHON_PRESENTATIONS}
             accentPalette={accentPalette}
           />
         </RevealOnScroll>
