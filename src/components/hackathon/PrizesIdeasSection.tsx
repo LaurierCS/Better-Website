@@ -14,7 +14,6 @@ export function PrizesIdeasSection({
   accentPalette,
 }: PrizesIdeasSectionProps) {
   const hasWinners = prizes.some((p) => p.winnerProject);
-  const placements = ['1st Place', '2nd Place', '3rd Place'];
   const colors = ['from-amber-500/20 to-amber-500/5', 'from-slate-400/20 to-slate-400/5', 'from-orange-600/20 to-orange-600/5'];
 
   return (
