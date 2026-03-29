@@ -33,6 +33,8 @@ export interface PrizeItem {
     placement: string;
     amount: string;
     description: string;
+    winnerProject?: string;
+    devpostUrl?: string;
 }
 
 export interface FAQItem {
@@ -252,16 +254,22 @@ export const HACKATHON_PRIZES: PrizeItem[] = [
         placement: '1st Place',
         amount: '$300 CAD',
         description: 'Best overall project based on execution, creativity, and impact.',
+        winnerProject: 'Archie',
+        devpostUrl: 'https://hack-to-the-future-wlu.devpost.com/submissions/981753-archie',
     },
     {
         placement: '2nd Place',
         amount: '$150 CAD',
         description: 'Strong technical execution and clear user value.',
+        winnerProject: 'havenNow',
+        devpostUrl: 'https://hack-to-the-future-wlu.devpost.com/submissions/983144-havennow',
     },
     {
         placement: '3rd Place',
         amount: '$100 CAD',
         description: 'Solid implementation and thoughtful approach.',
+        winnerProject: 'Deep Drive',
+        devpostUrl: 'https://hack-to-the-future-wlu.devpost.com/submissions/983163-deepdrive',
     },
 ];
 
@@ -270,16 +278,22 @@ export const HACKATHON_CATEGORY_AWARDS: PrizeItem[] = [
         placement: 'Best Design/UI',
         amount: '$50 CAD',
         description: 'Most polished and user-friendly interface.',
+        winnerProject: 'Pitch Ready',
+        devpostUrl: 'https://hack-to-the-future-wlu.devpost.com/submissions/981100-pitchready',
     },
     {
         placement: 'Best Creative Presentation',
         amount: '$50 CAD',
         description: 'Most engaging pitch and demo storytelling.',
+        winnerProject: 'Any%',
+        devpostUrl: 'https://hack-to-the-future-wlu.devpost.com/submissions/981319-any',
     },
     {
         placement: 'Most Likely to Become a Startup',
         amount: '$50 CAD',
         description: 'Strongest business potential and scalability.',
+        winnerProject: 'Astro',
+        devpostUrl: 'https://hack-to-the-future-wlu.devpost.com/submissions/981721-astro',
     },
 ];
 

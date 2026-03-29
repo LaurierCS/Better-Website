@@ -1,24 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   HACKATHON_CATEGORY_AWARDS,
   HACKATHON_COUNTDOWN_TARGET,
-  HACKATHON_DEVPOST_CHECKLIST,
   HACKATHON_EVENT,
-  HACKATHON_FAQS,
   HACKATHON_LINKS,
-  HACKATHON_PRESENTATIONS,
   HACKATHON_PRIZES,
-  HACKATHON_SUBMISSIONS,
-  HACKATHON_TECHNICAL_DETAILS,
-  HACKATHON_TIMELINE,
   HACKATHON_TOTAL_PRIZE_POOL,
 } from '../components/hackathon/hackathonData';
-import { FinalCtaSection } from '../components/hackathon/FinalCtaSection';
 import { HeroSection } from '../components/hackathon/HeroSection';
-import { PresentationsSection } from '../components/hackathon/PresentationsSection';
 import { PrizesIdeasSection } from '../components/hackathon/PrizesIdeasSection';
-import { ScheduleSection } from '../components/hackathon/ScheduleSection';
-import { SubmissionsFaqSection } from '../components/hackathon/SubmissionsFaqSection';
 import '../components/styles/fadeSlideUpAnimation.css';
 import '../components/styles/hackathonLanding.css';
 import RevealOnScroll from '../components/universal/RevealOnScroll';
@@ -71,10 +61,6 @@ export default function HackToTheFuturePage() {
     return () => window.clearInterval(timer);
   }, []);
 
-  const totalScheduleItems = useMemo(
-    () => HACKATHON_TIMELINE.reduce((total, day) => total + day.items.length, 0),
-    [],
-  );
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
@@ -97,36 +83,12 @@ export default function HackToTheFuturePage() {
         </RevealOnScroll>
 
         <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="20px" once={true}>
-          <PresentationsSection
-            presentations={HACKATHON_PRESENTATIONS}
-            accentPalette={accentPalette}
-          />
-        </RevealOnScroll>
-
-        <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="20px" once={true}>
-          <ScheduleSection timeline={HACKATHON_TIMELINE} totalScheduleItems={totalScheduleItems} />
-        </RevealOnScroll>
-
-        <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="20px" once={true}>
           <PrizesIdeasSection
             totalPrizePool={HACKATHON_TOTAL_PRIZE_POOL}
             prizes={HACKATHON_PRIZES}
             categoryAwards={HACKATHON_CATEGORY_AWARDS}
             accentPalette={accentPalette}
           />
-        </RevealOnScroll>
-
-        <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="20px" once={true}>
-          <SubmissionsFaqSection
-            submissions={HACKATHON_SUBMISSIONS}
-            technicalDetails={HACKATHON_TECHNICAL_DETAILS}
-            devpostChecklist={HACKATHON_DEVPOST_CHECKLIST}
-            faqs={HACKATHON_FAQS}
-          />
-        </RevealOnScroll>
-
-        <RevealOnScroll visibleClassName="fadeSlideUpFromBottom" rootMargin="20px" once={true}>
-          <FinalCtaSection links={HACKATHON_LINKS} />
         </RevealOnScroll>
       </main>
     </div>
