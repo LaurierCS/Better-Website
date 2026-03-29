@@ -13,7 +13,6 @@ import {
   HACKATHON_TIMELINE,
   HACKATHON_TOTAL_PRIZE_POOL,
 } from '../components/hackathon/hackathonData';
-import { ChallengeHighlightsSection } from '../components/hackathon/ChallengeHighlightsSection';
 import { FinalCtaSection } from '../components/hackathon/FinalCtaSection';
 import { HeroSection } from '../components/hackathon/HeroSection';
 import { PresentationsSection } from '../components/hackathon/PresentationsSection';
