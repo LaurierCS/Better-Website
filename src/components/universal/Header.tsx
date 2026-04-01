@@ -51,7 +51,6 @@ export default function Header() {
           <NavLink href="#impact">Impact</NavLink>
           <NavLink href="#initiatives">Initiatives</NavLink>
           <NavLink href="#team">Our Team</NavLink>
-          <NavLink href="/hack-to-the-future">Hackathon</NavLink>
         </nav>
 
         {/* Desktop Social Links */}
@@ -94,7 +93,6 @@ export default function Header() {
           <NavLink href="#impact" onClick={handleNavClick}>Impact</NavLink>
           <NavLink href="#initiatives" onClick={handleNavClick}>Initiatives</NavLink>
           <NavLink href="#team" onClick={handleNavClick}>Our Team</NavLink>
-          <NavLink href="/hack-to-the-future" onClick={handleNavClick}>Hackathon</NavLink>
           <div className="border-t border-white/20 w-full pt-4 mt-4 flex justify-center">
             <SocialLinks />
           </div>
