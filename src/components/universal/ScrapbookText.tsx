@@ -16,6 +16,7 @@ interface ScrapbookTextProps {
   mobileLetterSize?: number; // Size in pixels for mobile, default is letterSize * 0.5
   className?: string;
   letterClassName?: string;
+  playAnimationOnMount?: boolean; // If true, animate even if element is already visible on page load
 }
 
 // Supported letters - only these have assets
@@ -153,6 +154,7 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
   mobileLetterSize,
   className = '',
   letterClassName = '',
+  playAnimationOnMount = false,
 }) => {
   // Track window width for responsive sizing
   // Uses two breakpoints: sm (640px) and md (768px)
@@ -236,8 +238,8 @@ export const ScrapbookText: React.FC<ScrapbookTextProps> = ({
                   scale={transform.scale}
                   size={responsiveLetterSize}
                   letterClassName={letterClassName}
-                  isVisible={isVisible}
-                  skipAnimation={skipAnimation}
+                  isVisible={playAnimationOnMount ? true : isVisible}
+                  skipAnimation={playAnimationOnMount ? false : skipAnimation}
                 />
               );
             })}
