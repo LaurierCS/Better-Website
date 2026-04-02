@@ -40,7 +40,7 @@ export default function MeetThePros() {
               visibleClassName="fadeSlideUpFast"
               rootMargin="50px"
               once={true}
-              className="w-full lg:flex-1 lg:mt-15"
+              className="w-full lg:flex-1 lg:mt-2"
             >
               <ImageGallery 
                   images={galleryImages} 
