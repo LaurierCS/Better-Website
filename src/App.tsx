@@ -1,6 +1,7 @@
 import Header from './components/universal/Header';
 import Footer from './components/universal/Footer';
 import { PatternBackground } from './components/universal/PatternBackground';
+import './components/styles/dynamicInteractions.css';
 import HeroPage from './pages/Hero';
 import Events from './pages/Events';
 import Initiatives from './pages/Initiatives';

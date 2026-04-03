@@ -1,7 +1,15 @@
 import "../styles/fadeSlideUpAnimation.css";
 import RevealOnScroll from "../universal/RevealOnScroll";
+import { usePointerMotion } from "../../hooks/usePointerMotion";
 
 const HTMLBox = () => {
+  const { motionStyle, onMouseMove, onMouseLeave } = usePointerMotion({
+    maxRotateX: 1.8,
+    maxRotateY: 2.2,
+    maxTranslate: 4,
+    hoverScale: 1.005,
+  });
+
   return (
     <RevealOnScroll
       visibleClassName="fadeSlideUpFromBottom"
@@ -15,14 +23,19 @@ const HTMLBox = () => {
       </div>
 
       {/* macOS Window Container */}
-      <div className="rounded-xl overflow-hidden border border-slate-700 shadow-2xl bg-[#2C3844]">
+      <div
+        className="rounded-xl overflow-hidden border border-slate-700 shadow-2xl bg-[#2C3844] dynamic-hover-lift dynamic-sheen"
+        style={motionStyle ?? undefined}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+      >
         {/* Title Bar */}
         <div className="relative flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-[#1e2429] border-b border-slate-700">
           {/* Control Buttons */}
           <div className="flex gap-1.5 sm:gap-2">
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF9FC4] hover:brightness-110 transition-all" />
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FFD670] hover:brightness-110 transition-all" />
-            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#268AF9] hover:brightness-110 transition-all" />
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FF9FC4] hover:brightness-110 transition-all idle-soft-pulse" style={{ animationDelay: '0.1s' }} />
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#FFD670] hover:brightness-110 transition-all idle-soft-pulse" style={{ animationDelay: '0.35s' }} />
+            <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#268AF9] hover:brightness-110 transition-all idle-soft-pulse" style={{ animationDelay: '0.55s' }} />
           </div>
           
           {/* Filename */}
