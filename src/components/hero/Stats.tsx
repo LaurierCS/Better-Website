@@ -5,7 +5,6 @@
  */
 
 import { useEffect, useState } from 'react';
-import CountUp from 'react-countup';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 /**
@@ -37,6 +36,49 @@ const statsData: StatItem[] = [
     label: 'Students',
   },
 ];
+
+/**
+ * Simple Counter Component
+ * Animates a number from 0 to the target value
+ */
+interface SimpleCounterProps {
+  value: number;
+  shouldStart: boolean;
+  duration?: number;
+}
+
+const SimpleCounter: React.FC<SimpleCounterProps> = ({ value, shouldStart, duration = 2.5 }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (!shouldStart) {
+      setDisplayValue(0);
+      return;
+    }
+
+    const startTime = Date.now();
+    const endTime = startTime + (duration * 1000);
+
+    const animate = () => {
+      const now = Date.now();
+      const progress = Math.min((now - startTime) / (endTime - startTime), 1);
+      
+      // Easing function (easeOutExpo)
+      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.floor(eased * value);
+      
+      setDisplayValue(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [shouldStart, value, duration]);
+
+  return <>{displayValue.toLocaleString()}</>;
+};
 
 /**
  * Stats Component
@@ -83,22 +125,8 @@ export const Stats = () => {
                   color: '#ffffff',
                 }}
               >
-                {/* CountUp Animation Component */}
-                {startAnimation ? (
-                  <CountUp
-                    start={0}
-                    end={stat.value}
-                    duration={2.5}
-                    separator=","
-                    useEasing={true}
-                    easingFn={(t, b, c, d) => {
-                      // Custom easing function (easeOutExpo)
-                      return c * (-Math.pow(2, (-10 * t) / d) + 1) + b;
-                    }}
-                  />
-                ) : (
-                  '0'
-                )}
+                {/* Simple Counter Animation */}
+                <SimpleCounter value={stat.value} shouldStart={startAnimation} duration={2.5} />
                 {/* + sign */}
                 <span className="ml-1">
                   {stat.suffix}
