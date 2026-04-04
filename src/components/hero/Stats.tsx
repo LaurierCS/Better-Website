@@ -51,8 +51,8 @@ const SimpleCounter: React.FC<SimpleCounterProps> = ({ value, shouldStart, durat
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
+    // Only animate if shouldStart is true
     if (!shouldStart) {
-      setDisplayValue(0);
       return;
     }
 
@@ -74,7 +74,13 @@ const SimpleCounter: React.FC<SimpleCounterProps> = ({ value, shouldStart, durat
       }
     };
 
-    requestAnimationFrame(animate);
+    // Start the animation asynchronously via requestAnimationFrame
+    const frameId = requestAnimationFrame(animate);
+    
+    // Cleanup: cancel animation frame if effect is cleaned up
+    return () => {
+      cancelAnimationFrame(frameId);
+    };
   }, [shouldStart, value, duration]);
 
   return <>{displayValue.toLocaleString()}</>;
