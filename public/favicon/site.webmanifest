@@ -1,6 +1,9 @@
 {
   "name": "Laurier Computing Society",
   "short_name": "LCS",
+  "description": "Wilfrid Laurier University's student tech club — hackathons, workshops, and career growth for CS students.",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/favicon/favicon-96x96.png",
@@ -33,7 +36,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#000000",
+  "theme_color": "#2C3844",
   "background_color": "#ffffff",
   "display": "standalone"
 }

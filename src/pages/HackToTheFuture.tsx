@@ -54,6 +54,23 @@ export default function HackToTheFuturePage() {
   );
 
   useEffect(() => {
+    const prevTitle = document.title;
+    const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const prevDesc = metaDesc?.getAttribute('content') ?? '';
+
+    document.title = 'Hack to the Future | LCS Hackathon — Wilfrid Laurier University';
+    metaDesc?.setAttribute(
+      'content',
+      "Hack to the Future is Laurier Computing Society's annual hackathon at Wilfrid Laurier University. Compete for prizes, build projects, and connect with Waterloo's tech community.",
+    );
+
+    return () => {
+      document.title = prevTitle;
+      metaDesc?.setAttribute('content', prevDesc);
+    };
+  }, []);
+
+  useEffect(() => {
     const timer = window.setInterval(() => {
       setCountdown(getCountdownTime(HACKATHON_COUNTDOWN_TARGET));
     }, 1000);
