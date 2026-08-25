@@ -20,10 +20,6 @@
         {
             "source": "/hack-to-the-future/",
             "destination": "/index.html"
-        },
-        {
-            "source": "/((?!\\.(xml|txt|ico|png|jpg|jpeg|gif|svg|webp|js|css|json|webmanifest|html)$)[^/]+)(?:/)?$",
-            "destination": "/index.html"
         }
     ]
 }
