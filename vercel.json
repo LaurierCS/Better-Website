@@ -9,7 +9,7 @@
                 }
             ],
             "destination": "https://lauriercs.org/:path*",
-            "permanent": true
+            "permanent": false
         }
     ],
     "rewrites": [
@@ -19,6 +19,10 @@
         },
         {
             "source": "/hack-to-the-future/",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/",
             "destination": "/index.html"
         }
     ]
