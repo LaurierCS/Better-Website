@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLinks from './SocialLinks';
 
 export default function Header() {
@@ -32,25 +32,26 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo - responsive sizing */}
-        <div className="flex items-center shrink-0">
-          <img 
-            src="/assets/logos/LCS_Logo_Long_White_SVG.svg" 
-            alt="LCS Logo" 
+        <Link to="/" className="flex items-center shrink-0" aria-label="Laurier Computing Society home">
+          <img
+            src="/assets/logos/LCS_Logo_Long_White_SVG.svg"
+            alt=""
             className="hidden md:block h-8 md:h-10"
           />
-          <img 
-            src="/assets/logos/LCS_Icon_White_SVG.svg" 
-            alt="LCS Logo" 
+          <img
+            src="/assets/logos/LCS_Icon_White_SVG.svg"
+            alt=""
             className="block md:hidden h-8"
           />
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-8">
           <NavLink href="#about">About Us</NavLink>
           <NavLink href="#impact">Impact</NavLink>
           <NavLink href="#initiatives">Initiatives</NavLink>
           <NavLink href="#team">Our Team</NavLink>
+          <NavLink href="/hack-to-the-future">Hackathon</NavLink>
         </nav>
 
         {/* Desktop Social Links */}
@@ -85,7 +86,7 @@ export default function Header() {
       {/* Mobile Dropdown Menu */}
       <div 
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          isMobileMenuOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <nav className="flex flex-col items-center gap-4 py-4 backdrop-blur-lg bg-white/5 border-t border-white/20">
@@ -93,6 +94,7 @@ export default function Header() {
           <NavLink href="#impact" onClick={handleNavClick}>Impact</NavLink>
           <NavLink href="#initiatives" onClick={handleNavClick}>Initiatives</NavLink>
           <NavLink href="#team" onClick={handleNavClick}>Our Team</NavLink>
+          <NavLink href="/hack-to-the-future" onClick={handleNavClick}>Hackathon</NavLink>
           <div className="border-t border-white/20 w-full pt-4 mt-4 flex justify-center">
             <SocialLinks />
           </div>

@@ -1,7 +1,24 @@
 {
+    "redirects": [
+        {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.lauriercs.org"
+                }
+            ],
+            "destination": "https://lauriercs.org/:path*",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/hack-to-the-future",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/hack-to-the-future/",
             "destination": "/index.html"
         }
     ]

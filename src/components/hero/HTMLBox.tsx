@@ -19,7 +19,7 @@ const HTMLBox = () => {
     >
       {/* Bracket SVG - Left */}
       <div className="hidden md:block absolute left-0 top-0 bottom-0 -translate-x-26 w-27 opacity-75">
-        <img src="/assets/doodles/Bracket.svg" alt="bracket" className="w-full h-full" />
+        <img src="/assets/doodles/Bracket.svg" alt="" className="w-full h-full" />
       </div>
 
       {/* macOS Window Container */}
@@ -71,7 +71,7 @@ const HTMLBox = () => {
               <span className="hidden sm:inline-block w-8 border-l-2 border-slate-600/30 ml-2" />
               <span className="hidden sm:inline-block w-8 border-l-2 border-slate-600/30 ml-0" />
               <span className="sm:hidden inline-block w-4 ml-1" />
-              <span className="text-slate-200 flex-1 wrap-break-word">The Laurier Computing Society (LCS) is the official student-run society of Wilfrid Laurier University's Computer Science department. We support students through academic help, career-building events, and a strong tech-focused community.</span>
+              <span className="text-slate-200 flex-1 wrap-break-word">The Laurier Computing Society (LCS) is Wilfrid Laurier University's official computer science club — the Laurier CS club for WLU students. We support students through academic help, career-building events, hackathons, and a strong tech-focused community.</span>
             </div>
             
             {/* Line 7: Closing p tag with indent guide */}
@@ -91,7 +91,7 @@ const HTMLBox = () => {
 
       {/* Bracket SVG - Right */}
       <div className="hidden md:block absolute right-0 top-0 bottom-0 translate-x-26 w-27 opacity-75 rotate-180">
-        <img src="/assets/doodles/Bracket.svg" alt="bracket" className="w-full h-full" />
+        <img src="/assets/doodles/Bracket.svg" alt="" className="w-full h-full" />
       </div>
     </RevealOnScroll>
   );

@@ -40,7 +40,7 @@ export function HeroSection({
         <div className="flex items-center gap-3">
           <img
             src="/assets/logos/LCS_Icon_White_SVG.svg"
-            alt="LCS"
+            alt="Laurier Computing Society"
             className="h-9 w-9 md:h-12 md:w-12"
           />
           <div>

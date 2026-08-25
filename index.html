@@ -4,21 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Laurier Computing Society | WLU Tech &amp; CS Community</title>
+  <title>Laurier CS Club | Laurier Computing Society</title>
 
-  <!-- SEO Meta Tags -->
   <meta name="description"
-    content="Laurier Computing Society (LCS) is Wilfrid Laurier University's student Computer Science club — powering hackathons, workshops, networking, and career growth for CS students in Waterloo." />
-  <meta name="keywords"
-    content="Laurier Computing Society, LCS, computer science, student tech club, Wilfrid Laurier University, WLU, hackathon, programming, tech community, Waterloo, CS events" />
+    content="Join Laurier Computing Society, Wilfrid Laurier University's official CS club. Hackathons, workshops, and career events for WLU computer science students in Waterloo." />
   <meta name="author" content="Laurier Computing Society" />
 
-  <!-- Open Graph Tags -->
   <meta property="og:site_name" content="Laurier Computing Society" />
   <meta property="og:locale" content="en_CA" />
-  <meta property="og:title" content="Laurier Computing Society | WLU Tech &amp; CS Community" />
+  <meta property="og:title" content="Laurier CS Club | Laurier Computing Society" />
   <meta property="og:description"
-    content="LCS is Wilfrid Laurier University's student Computer Science club — hackathons, workshops, networking, and career growth for CS students in Waterloo." />
+    content="Join Laurier Computing Society, Wilfrid Laurier University's official CS club. Hackathons, workshops, and career events for WLU computer science students in Waterloo." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://lauriercs.org" />
   <meta property="og:image" content="https://lauriercs.org/assets/og-image.png" />
@@ -27,65 +23,28 @@
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:alt" content="Laurier Computing Society logo" />
 
-  <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Laurier Computing Society | WLU Tech &amp; CS Community" />
+  <meta name="twitter:title" content="Laurier CS Club | Laurier Computing Society" />
   <meta name="twitter:description"
-    content="LCS is Wilfrid Laurier University's student Computer Science club — hackathons, workshops, networking, and career growth for CS students in Waterloo." />
+    content="Join Laurier Computing Society, Wilfrid Laurier University's official CS club. Hackathons, workshops, and career events for WLU computer science students in Waterloo." />
   <meta name="twitter:image" content="https://lauriercs.org/assets/og-image.png" />
   <meta name="twitter:image:alt" content="Laurier Computing Society logo" />
 
-  <!-- Canonical URL -->
   <link rel="canonical" href="https://lauriercs.org" />
-
-  <!-- Web App Manifest -->
   <link rel="manifest" href="/favicon/site.webmanifest" />
-
-  <!-- Dynamic Favicon (set by JavaScript) -->
-  <link id="dynamic-favicon" rel="icon" />
-
-  <!-- Fallback PNG favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png" />
-
-  <!-- Apple Touch Icon for iOS -->
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
   <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
 
-  <!-- Theme Color -->
   <meta name="theme-color" content="#2C3844" />
 
-  <!-- Favicon Theme Switcher Script -->
-  <script>
-    function updateFavicon() {
-      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const faviconLink = document.getElementById('dynamic-favicon');
-
-      // Set SVG favicon for modern browsers with theme support
-      if (isDark) {
-        faviconLink.rel = 'icon';
-        faviconLink.type = 'image/svg+xml';
-        faviconLink.href = '/favicon/favicon.svg';
-      } else {
-        faviconLink.rel = 'icon';
-        faviconLink.type = 'image/svg+xml';
-        faviconLink.href = '/favicon/LCS_Icon_Black_SVG.svg';
-      }
-    }
-
-    // Update favicon on page load
-    updateFavicon();
-
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
-  </script>
-
-  <!-- JSON-LD Schema Markup for Organization -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -93,8 +52,8 @@
       "name": "Laurier Computing Society",
       "alternateName": "LCS",
       "url": "https://lauriercs.org",
-      "description": "Wilfrid Laurier University's student Computer Science club dedicated to computer science and technology enthusiasts — powering hackathons, workshops, networking, and career growth.",
-      "logo": "https://lauriercs.org/assets/og-image.png",
+      "description": "Wilfrid Laurier University's official computer science club — hackathons, workshops, networking, and career growth for WLU CS students.",
+      "logo": "https://lauriercs.org/favicon/web-app-manifest-512x512.png",
       "image": "https://lauriercs.org/assets/og-image.png",
       "sameAs": [
         "https://www.instagram.com/laurier.cs/",

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   HACKATHON_CATEGORY_AWARDS,
   HACKATHON_COUNTDOWN_TARGET,
@@ -9,10 +9,13 @@ import {
 } from '../components/hackathon/hackathonData';
 import { HeroSection } from '../components/hackathon/HeroSection';
 import { PrizesIdeasSection } from '../components/hackathon/PrizesIdeasSection';
+import SeoHead from '../components/seo/SeoHead';
 import '../components/styles/fadeSlideUpAnimation.css';
 import '../components/styles/hackathonLanding.css';
 import RevealOnScroll from '../components/universal/RevealOnScroll';
 import { PatternBackground } from '../components/universal/PatternBackground';
+import { getHackathonEventJsonLd } from '../seo/hackathonJsonLd';
+import { HACKATHON_DESCRIPTION, HACKATHON_PATH, HACKATHON_TITLE } from '../seo/site';
 
 interface CountdownTime {
   days: number;
@@ -52,23 +55,7 @@ export default function HackToTheFuturePage() {
   const [countdown, setCountdown] = useState<CountdownTime>(() =>
     getCountdownTime(HACKATHON_COUNTDOWN_TARGET),
   );
-
-  useEffect(() => {
-    const prevTitle = document.title;
-    const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    const prevDesc = metaDesc?.getAttribute('content') ?? '';
-
-    document.title = 'Hack to the Future | LCS Hackathon — Wilfrid Laurier University';
-    metaDesc?.setAttribute(
-      'content',
-      "Hack to the Future is Laurier Computing Society's annual hackathon at Wilfrid Laurier University. Compete for prizes, build projects, and connect with Waterloo's tech community.",
-    );
-
-    return () => {
-      document.title = prevTitle;
-      metaDesc?.setAttribute('content', prevDesc);
-    };
-  }, []);
+  const eventJsonLd = useMemo(() => getHackathonEventJsonLd(), []);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -81,6 +68,12 @@ export default function HackToTheFuturePage() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      <SeoHead
+        title={HACKATHON_TITLE}
+        description={HACKATHON_DESCRIPTION}
+        canonicalPath={HACKATHON_PATH}
+        jsonLd={eventJsonLd}
+      />
       <PatternBackground />
 
       <div className="hack-glow-orb hack-glow-orb-one" />
