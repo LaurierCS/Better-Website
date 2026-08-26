@@ -19,6 +19,8 @@ interface StatItem {
 /**
  * Stats data configuration
  */
+const STAT_ACCENTS = ['#FF9FC4', '#FF9770', '#FFD670'] as const;
+
 const statsData: StatItem[] = [
   {
     value: 20,
@@ -128,7 +130,7 @@ export const Stats = () => {
                 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                 style={{
                   fontFamily: 'var(--font-dosis)',
-                  color: '#ffffff',
+                  color: STAT_ACCENTS[index],
                 }}
               >
                 {/* Simple Counter Animation */}

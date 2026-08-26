@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-white/10 ${
         isScrolled || isMobileMenuOpen
           ? 'backdrop-blur-lg bg-white/5' 
           : 'bg-transparent'

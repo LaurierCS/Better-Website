@@ -66,11 +66,13 @@ export function TeamCard({ member }: TeamCardProps) {
             className="w-full h-full object-cover"
           />
         ) : (
-          // Placeholder for missing image
           <div className="w-full h-full flex items-center justify-center bg-[#2C3844]">
-            <div className="text-center text-gray-400">
-              <div className="text-4xl">👤</div>
-            </div>
+            <span
+              className="font-bold text-3xl md:text-4xl"
+              style={{ fontFamily: 'var(--font-dosis)', color: accentColor.border }}
+            >
+              {member.name.trim().charAt(0).toUpperCase() || '?'}
+            </span>
           </div>
         )}
         </div>
