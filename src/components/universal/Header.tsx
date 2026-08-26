@@ -32,7 +32,11 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo - responsive sizing */}
-        <Link to="/" className="flex items-center shrink-0" aria-label="Laurier Computing Society home">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center shrink-0 bg-none border-none p-0 cursor-pointer"
+          aria-label="Scroll to top"
+        >
           <img
             src="/assets/logos/LCS_Logo_Long_White_SVG.svg"
             alt=""
@@ -43,7 +47,7 @@ export default function Header() {
             alt=""
             className="block md:hidden h-8"
           />
-        </Link>
+        </button>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-5 lg:gap-8">

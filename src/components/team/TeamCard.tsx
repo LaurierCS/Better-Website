@@ -4,6 +4,7 @@
  * Styled with dark theme and accent color hover effects
  */
 
+import { useState } from 'react';
 import RevealOnScroll from '../universal/RevealOnScroll';
 
 interface TeamMember {
@@ -39,7 +40,8 @@ const LinkedInIcon = () => (
 );
 
 export function TeamCard({ member }: TeamCardProps) {
-  // Assign accent colors based on member id for consistency
+  const [hoverColor, setHoverColor] = useState<string | null>(null);
+
   const accentColorMap = [
     { border: '#FF9FC4', shadow: 'rgba(255,159,196,0.3)' },    // Pink
     { border: '#FF9770', shadow: 'rgba(255,151,112,0.3)' },    // Orange
@@ -47,17 +49,30 @@ export function TeamCard({ member }: TeamCardProps) {
     { border: '#268AF9', shadow: 'rgba(38,138,249,0.3)' },     // Blue
   ];
   
-  // Use member id to consistently assign the same color
   const colorIndex = member.id.charCodeAt(0) % accentColorMap.length;
-  const accentColor = accentColorMap[colorIndex];
+  const staticColor = accentColorMap[colorIndex];
+  const displayColor = hoverColor || staticColor.border;
+
+  const handleMouseEnter = () => {
+    const randomColor = accentColorMap[Math.floor(Math.random() * accentColorMap.length)];
+    setHoverColor(randomColor.border);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverColor(null);
+  };
 
   return (
     <RevealOnScroll visibleClassName="fadeSlideUpFast" rootMargin="30px" once={true}>
-      <div className="group relative flex items-center gap-4 md:gap-5 py-4 px-4 md:px-6 transition-all duration-300 cursor-pointer hover:scale-105">
+      <div
+        className="group relative flex items-center gap-4 md:gap-5 py-4 px-4 md:px-6 transition-all duration-300 cursor-pointer hover:scale-105"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {/* Image Container - Circular with colored border */}
         <div 
           className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 shrink-0 rounded-full overflow-hidden border-3 md:border-4 group-hover:scale-110 transition-transform duration-300"
-          style={{ borderColor: accentColor.border }}
+          style={{ borderColor: staticColor.border }}
         >
         {member.picture_url ? (
           <img
@@ -68,8 +83,8 @@ export function TeamCard({ member }: TeamCardProps) {
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-[#2C3844]">
             <span
-              className="font-bold text-3xl md:text-4xl"
-              style={{ fontFamily: 'var(--font-dosis)', color: accentColor.border }}
+              className="font-bold text-3xl md:text-4xl transition-colors duration-200"
+              style={{ fontFamily: 'var(--font-dosis)', color: displayColor }}
             >
               {member.name.trim().charAt(0).toUpperCase() || '?'}
             </span>
@@ -80,7 +95,10 @@ export function TeamCard({ member }: TeamCardProps) {
         {/* Info Section */}
         <div className="flex flex-col gap-1 flex-1 min-w-0">
           {/* Member Name */}
-          <h3 className="font-dosis font-bold text-white text-base sm:text-lg md:text-xl group-hover:text-[#FFD670] transition-colors duration-200 wrap-break-word leading-tight">
+          <h3
+            className="font-dosis font-bold text-white text-base sm:text-lg md:text-xl transition-colors duration-200 wrap-break-word leading-tight"
+            style={{ color: hoverColor ? displayColor : 'white' }}
+          >
             {member.name}
           </h3>
           
