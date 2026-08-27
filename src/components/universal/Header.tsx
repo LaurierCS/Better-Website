@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SocialLinks from './SocialLinks';
 
 export default function Header() {
@@ -90,7 +90,7 @@ export default function Header() {
       {/* Mobile Dropdown Menu */}
       <div 
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
+          isMobileMenuOpen ? 'max-h-128 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <nav className="flex flex-col items-center gap-4 py-4 backdrop-blur-lg bg-white/5 border-t border-white/20">
